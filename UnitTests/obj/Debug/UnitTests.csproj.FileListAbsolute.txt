@@ -1,0 +1,2 @@
+C:\Code\MvvmDemoApp\UnitTests\obj\Debug\UnitTests.csprojAssemblyReference.cache
+C:\Code\MvvmDemoApp\UnitTests\obj\Debug\UnitTests.g.resources

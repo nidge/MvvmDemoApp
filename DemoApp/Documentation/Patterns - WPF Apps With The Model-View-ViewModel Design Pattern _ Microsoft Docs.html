@@ -1,0 +1,1846 @@
+<!DOCTYPE html>
+<!-- saved from url=(0131)https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern -->
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus js-focus-visible theme-light" lang="en-us" dir="ltr" data-css-variable-support="true" data-authenticated="false" data-auth-status-determined="true" data-target="docs" x-ms-format-detection="none"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta property="og:title" content="Patterns - WPF Apps With The Model-View-ViewModel Design Pattern">
+	<meta property="og:type" content="website">
+	<meta property="og:url" content="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern">
+
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="@docsmsft">
+
+
+	<meta name="is_archived" content="true">
+<meta name="ROBOTS" content="INDEX,FOLLOW">
+<meta name="author" content="kexugit">
+<meta name="ms.author" content="Archiveddocs">
+<meta name="breadcrumb_path" content="/archive/msdn-magazine/breadcrumb/toc.json">
+<meta name="ms.topic" content="Archived">
+<meta name="ms.prod" content="msdn-magazine">
+<meta name="uhfHeaderId" content="MSDocsHeader-Archive">
+<meta name="ms:contentKeyID" content="20007189">
+<meta name="TOCTitle" content="Patterns - WPF Apps With The Model-View-ViewModel Design Pattern">
+<meta name="ms:assetid" content="76c6b405-83fd-4cbb-9d13-213693a4bb2a">
+<meta name="ms:mtpsurl" content="https://msdn.microsoft.com/en-US/library/Dd419663(v=MSDN.10)">
+<meta name="ms.date" content="12/08/2016">
+<meta name="mtps_version" content="v=MSDN.10">
+<meta name="search.ms_sitename" content="Docs">
+<meta name="search.ms_docsetname" content="msdn-magazine-archive">
+<meta name="locale" content="en-us">
+<meta name="site_name" content="Docs">
+<meta name="search.ms_product" content="MSDN">
+<meta name="depot_name" content="MSDN.msdn-magazine-archive">
+<meta name="updated_at" content="2019-11-04 08:19 AM">
+<meta name="gitcommit" content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/msdn-magazine-archive-pr/commit/cd9dc8c459ab025dd944dd2ae4c76fc90aacecae?path=%2fmsdn-magazine-archive%2f2009%2ffebruary%2fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern.md&amp;_a=contents">
+<meta name="original_content_git_url" content="https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/msdn-magazine-archive-pr?path=%2fmsdn-magazine-archive%2f2009%2ffebruary%2fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern.md&amp;version=GBlive&amp;_a=contents">
+<meta name="document_id" content="20df32ca-ccd8-9990-9ee9-e4318eb5d5a7">
+<meta name="document_version_independent_id" content="ba91e035-a2d4-2056-02af-15619b0ee623">
+<meta name="page_type" content="conceptual">
+<meta name="toc_rel" content="toc.json">
+<meta name="word_count" content="6747">
+
+
+<link href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern" rel="canonical">
+	<title>Patterns - WPF Apps With The Model-View-ViewModel Design Pattern | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/3cd4a9d2.site-ltr.css">
+
+	<link rel="stylesheet" href="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/672b4bb0.conceptual.css">
+
+
+	<script async="" defer="" crossorigin="anonymous" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/lux.js.download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/analytics.js.download"></script><script>
+	var msDocs = {
+		data: {
+			timeOrigin: Date.now(),
+			azureHeaderLocale: 'en-us',
+			contentLocale: 'en-us',
+			contentDir: 'ltr',
+			userLocale: 'en-us',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			},
+			hasBinaryRating: false,
+			hasGithubIssues: false,
+			showFeedbackReport: false,
+			enableTutorialFeedback: false,
+			feedbackSystem: 'None',
+			feedbackGitHubRepo: '',
+			feedbackProductUrl: '',
+			contentGitUrl: 'https://docs-archive.visualstudio.com/DefaultCollection/docs-archive-project/_git/msdn-magazine-archive-pr?path=%2fmsdn-magazine-archive%2f2009%2ffebruary%2fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern.md&version=GBlive&_a=contents',
+			extendBreadcrumb: true,
+			isEditDisplayable: false,
+			hideViewSource: false,
+			hasPageActions: true,
+			hasBookmark: true,
+			hasShare: true
+		},
+		functions:{}
+	};
+	if (!('Promise' in window && 'resolve' in window.Promise && 'reject' in window.Promise && 'all' in window.Promise && 'race' in window.Promise)) {
+		document.write('<script src="/static/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof fetch !== 'function') {
+		document.write('<script src="/static/third-party/fetch/3.0.0/fetch.umd.min.js" integrity="sha384-EQIXrC5K2+7X8nGgLkB995I0/6jfAvvyG1ieZ+WYGxgJHFMD/alsG9fSDWvzb5Y1" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof HTMLTemplateElement === 'undefined') {
+		document.write('<script src="/static/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"><\/script>');
+	}
+	if (typeof URL !== 'function') {
+		document.write('<script src="/static/third-party/url/0.5.7/url.min.js" integrity="sha384-vn7xBMtpSTfzaTRWxj0kVq0UcsbBrTOgZ/M1ISHqe1V358elYva+lfiEC+T8jLPc" crossorigin="anonymous"><\/script>');
+	}
+	</script>
+
+	<script src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/jquery.min.js.download" integrity="sha384-Q4GEli30r5Awgb/ITt925nE8buHKjVWM/x3DX8t5JwRLT9P/C2r7u7XzNwvpTTGw" crossorigin="anonymous"></script>
+		<script src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/dfc8719c.index-docs.js.download"></script><style></style><script src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/jsll-4.js.download" async="" defer=""></script>
+
+<script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js.download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(1).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(2).download"></script><style type="text/css" media="print">.usabilla_live_button_container { display: none; }</style><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(3).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(4).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(5).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(6).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(7).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(8).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(9).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(10).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(11).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(12).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(13).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(14).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(15).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(16).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(17).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(18).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(19).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(20).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(21).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(22).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(23).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(24).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(25).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(26).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(27).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(28).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(29).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(30).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(31).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(32).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(33).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(34).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(35).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(36).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(37).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(38).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(39).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(40).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(41).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(42).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(43).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(44).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(45).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(46).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(47).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(48).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(49).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(50).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(51).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(52).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(53).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(54).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(55).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(56).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(57).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(58).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(59).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(60).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(61).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(62).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(63).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(64).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(65).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(66).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(67).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(67).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(68).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(69).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(70).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(71).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(72).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(73).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(74).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(75).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(76).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(77).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(78).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(79).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(80).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(81).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(82).download"></script><script async="" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/t.js(83).download"></script><script async="" src="https://web.vortex.data.microsoft.com/collect/v1/t.js?ver=%272.1%27&amp;name=%27Ms.Webi.ContentUpdate%27&amp;time=%272020-04-17T15%3A26%3A50.852Z%27&amp;os=%27Windows%27&amp;appId=%27JS%3ADocs%27&amp;-ver=%271.0%27&amp;-impressionGuid=%27b7587061-278a-4af3-9660-def44a8440e3%27&amp;-pageName=%2720df32ca-ccd8-9990-9ee9-e4318eb5d5a7%27&amp;-uri=%27https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Farchive%2Fmsdn-magazine%2F2009%2Ffebruary%2Fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern%27&amp;-market=%27en-us%27&amp;-pageTags=%27%7B%22author%22%3A%22kexugit%22%2C%22pgauth%22%3A%22Archiveddocs%22%2C%22pgtop%22%3A%22Archived%22%2C%22product%22%3A%22msdn-magazine%22%2C%22date%22%3A%2212%2F08%2F2016%22%2C%22depotname%22%3A%22MSDN.msdn-magazine-archive%22%2C%22publishtime%22%3A%222019-11-04%2008%3A19%20AM%22%2C%22gitcommit%22%3A%22https%3A%2F%2Fdocs-archive.visualstudio.com%2FDefaultCollection%2Fdocs-archive-project%2F_git%2Fmsdn-magazine-archive-pr%2Fcommit%2Fcd9dc8c459ab025dd944dd2ae4c76fc90aacecae%3Fpath%3D%252fmsdn-magazine-archive%252f2009%252ffebruary%252fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern.md%26_a%3Dcontents%22%2C%22giturl%22%3A%22https%3A%2F%2Fdocs-archive.visualstudio.com%2FDefaultCollection%2Fdocs-archive-project%2F_git%2Fmsdn-magazine-archive-pr%3Fpath%3D%252fmsdn-magazine-archive%252f2009%252ffebruary%252fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern.md%26version%3DGBlive%26_a%3Dcontents%22%2C%22document_version_independent_id%22%3A%22ba91e035-a2d4-2056-02af-15619b0ee623%22%2C%22contentlocale%22%3A%22en-us%22%2C%22highContrast%22%3A%22false%22%2C%22metaTags%22%3A%7B%7D%7D%27&amp;-pageHeight=22220&amp;-vpHeight=680&amp;-vpWidth=1536&amp;-actionType=%27R%27&amp;-behavior=0&amp;-vScrollOffset=0&amp;-hScrollOffset=0&amp;-contentVer=%272.0%27&amp;-content=%27%5B%5D%27&amp;*baseType=%27Ms.Content.ContentUpdate%27&amp;*title=%27Patterns%20-%20WPF%20Apps%20With%20The%20Model-View-ViewModel%20Design%20Pattern%20%7C%20Microsoft%20Docs%27&amp;*cookieEnabled=true&amp;*isJs=true&amp;*isDomComplete=false&amp;*isLoggedIn=false&amp;ext-javascript-ver=%271.1%27&amp;ext-javascript-libVer=%274.2.14%27&amp;ext-javascript-domain=%27docs.microsoft.com%27&amp;ext-javascript-msfpc=%27GUID%3D86865afcf40f47628a6040eee2104262%26HASH%3D8686%26LV%3D201805%26V%3D4%26LU%3D1526462712840%27&amp;ext-javascript-userConsent=true&amp;ext-javascript-anid=%27A%3D1B5A49ECFA30391489DB2769FFFFFFFF%27&amp;ext-user-localId=%27t%3A141AE146148E6E3F1976EAB4108E6D1E%27&amp;$mscomCookies=false"></script></head>
+
+<body lang="en-us" dir="ltr"><div style="display: none;" id="lightningjs-usabilla_live"><div><iframe frameborder="0" id="lightningjs-frame-usabilla_live" src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/saved_resource.html"></iframe></div></div>
+<div class="header-holder has-default-focus">
+	<a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#main" class="skip-to-main-link visually-hidden-until-focused is-fixed has-inner-focus focus-visible has-top-zero has-left-zero has-right-zero has-padding-medium has-text-centered has-body-background-medium" tabindex="1">Skip to main content</a>
+		<div id="headerAreaHolder" data-bi-name="header">
+<header role="banner" itemscope="itemscope" itemtype="http://schema.org/Organization"><!----><!----><div class="nav-bar"><!---->
+		
+		<a class="nav-bar-button has-padding-left-medium has-padding-left-small-tablet" itemprop="url" href="https://www.microsoft.com/" aria-label="Microsoft">
+			<div class="nav-bar-logo has-background-image theme-display is-light" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+			<div class="nav-bar-logo has-background-image theme-display is-dark is-high-contrast" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+		</a>
+		
+			
+		<div class="nav-bar-item is-hidden-tablet">
+			<button class="nav-bar-button is-size-5 is-text has-body-background has-padding-none" title="Global navigation" aria-expanded="false">
+				<span class="has-text-weight-semibold has-padding-left-small has-padding-bottom-extra-small"><!---->Documentation<!----></span>
+				<div class="nav-bar-burger has-padding-none has-height-zero">
+					<span></span>
+					<span></span>
+					<span></span>
+					<span class="is-visually-hidden"><!---->Global navigation<!----></span>
+				</div>
+			</button>
+		</div>
+	
+			
+		<nav class="nav-bar-nav" role="navigation" aria-label="Global">
+			<ul class="nav-bar-nav-list">
+				
+		<li class="nav-bar-item is-category has-spacing">
+			<a class="nav-bar-button title has-hover-underline is-4" itemprop="url" href="https://docs.microsoft.com/en-us/">
+				<span><!---->Docs<!----></span>
+			</a>
+		</li>
+	
+				<!---->
+		<li class="nav-bar-item">
+			<a class="nav-bar-button has-hover-underline" href="https://docs.microsoft.com/en-us/">
+				<span><!---->Documentation<!----></span>
+			</a>
+		</li><!---->
+		<li class="nav-bar-item">
+			<a class="nav-bar-button has-hover-underline" href="https://docs.microsoft.com/en-us/learn/">
+				<span><!---->Learn<!----></span>
+			</a>
+		</li><!---->
+		<li class="nav-bar-item">
+			<a class="nav-bar-button has-hover-underline" href="https://docs.microsoft.com/en-us/samples/browse/">
+				<span><!---->Code Samples<!----></span>
+			</a>
+		</li><!---->
+		<li class="dropdown nav-bar-item" hidden="">
+			<button aria-expanded="false" class="dropdown-trigger nav-bar-button has-hover-underline" aria-controls="ax-153">
+				<span><!---->More<!----></span>
+				<span class="nav-bar-button-chevron" aria-hidden="true">
+					<span class="docon docon-chevron-down-light expanded-indicator"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu" id="ax-153" aria-label="More">
+				<!---->
+		<li class="nav-bar-item" hidden="">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/en-us/"><!---->Documentation<!----></a>
+		</li>
+	<!---->
+		<li class="nav-bar-item" hidden="">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/en-us/learn/"><!---->Learn<!----></a>
+		</li>
+	<!---->
+		<li class="nav-bar-item" hidden="">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/en-us/samples/browse/"><!---->Code Samples<!----></a>
+		</li>
+	<!---->
+			</ul>
+		</li><!---->
+			</ul>
+		</nav>
+	
+			<span class="nav-bar-spacer is-hidden-mobile"></span>
+			
+			<div class="nav-bar-item nav-bar-search-form-item has-padding-top-small has-padding-bottom-small has-padding-left-medium has-padding-none-tablet" id="ax-154" hidden="">
+				
+			<form class="is-flex" method="GET" name="searchForm" role="search" id="searchForm" aria-label="Search" aria-expanded="false" action="https://docs.microsoft.com/en-us/search/">
+					<div class="autocomplete" data-bi-name="autocomplete"><!---->
+		<div class="control ">
+			<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="site-search-input" class="autocomplete-input input  is-small is-full-width" type="search" name="search" aria-expanded="false" aria-owns="ax-155-listbox" aria-activedescendant="" aria-label="Search" placeholder="Search previous versions">
+
+			<span aria-hidden="true" class="icon is-small is-left" hidden="">
+				<span class="has-text-primary docon docon-undefined"></span>
+			</span>
+
+			<span class="autocomplete-loader loader has-text-primary" aria-hidden="true" hidden=""></span>
+		</div>
+
+		<ul class="autocomplete-suggestions is-vertically-scrollable" role="listbox" id="ax-155-listbox" hidden="">
+			
+		</ul><!----></div>
+					<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+					<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+					<input name="category" hidden="" value="All">
+					
+					<input name="dataSource" hidden="" value="previousVersions">
+			</form>
+		
+			</div>
+			
+					<div class="nav-bar-item nav-bar-search-form-item has-flex-grow-none
+						has-flex-shrink-none has-margin-right-extra-small has-padding-top-small has-padding-bottom-small has-padding-left-medium has-padding-none-tablet">
+						<!-- hidden when the width drops to tablet -->
+						
+			<form class="is-flex" method="GET" name="searchForm" role="search" id="searchFormDesktop" aria-label="Search" aria-expanded="false" action="https://docs.microsoft.com/en-us/search/">
+					<div class="autocomplete" data-bi-name="autocomplete"><!---->
+		<div class="control has-icons-left">
+			<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="ax-156" class="autocomplete-input input control has-icons-left is-small is-full-width" type="search" name="search" aria-expanded="false" aria-owns="ax-157-listbox" aria-activedescendant="" aria-label="Search" placeholder="Search previous versions">
+
+			<span aria-hidden="true" class="icon is-small is-left">
+				<span class="has-text-primary docon docon-search"></span>
+			</span>
+
+			<span class="autocomplete-loader loader has-text-primary" aria-hidden="true" hidden=""></span>
+		</div>
+
+		<ul class="autocomplete-suggestions is-vertically-scrollable" role="listbox" id="ax-157-listbox" hidden="">
+			
+		</ul><!----></div>
+					<!-- mobile safari will not dispatch submit event unless there's a submit button that is not display:none -->
+					<button type="submit" class="visually-hidden" tabindex="-1" aria-hidden="true"></button>
+					<input name="category" hidden="" value="All">
+					
+					<input name="dataSource" hidden="" value="previousVersions">
+			</form>
+		
+					</div>
+				
+			<div class="nav-bar-item has-flex-grow-mobile has-flex-shrink-mobile" hidden="">
+				<button id="form-expander" class="nav-bar-button has-hover-underline is-full-width has-padding-medium has-flex-justify-content-end-mobile" title="Search" aria-expanded="false" aria-controls="ax-154">
+						
+					<span class="is-visually-hidden-mobile"><!---->Search<!----></span>
+					<span class="icon" aria-hidden="true">
+						<span class="docon docon-search"></span>
+					</span>
+	
+				</button>
+			</div>
+		
+			
+		<div class="nav-bar-item is-size-7 is-hidden-mobile has-padding-left-extra-small">
+			
+		<a class="docs-sign-in auth-status-determined not-authenticated button is-text has-inner-focus has-text-primary is-small" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#">
+			Sign in
+		</a>
+	
+			
+		<div class="dropdown has-caret auth-status-determined authenticated">
+			<button class="dropdown-trigger button is-text has-padding-none has-background-transparent" aria-controls="user-menu" aria-expanded="false" aria-label="Your Account">
+				<figure class="image is-36x36">
+					<img class="has-body-background-medium is-rounded" data-profile-property="avatarUrl">
+				</figure>
+			</button>
+			<div class="dropdown-menu box" id="user-menu" role="menu">
+				<div class="media is-user-dir">
+					<div class="media-left">
+						<figure class="image is-48x48" aria-hidden="true">
+							<img class="has-body-background-medium is-rounded" aria-labelledby="displayName" data-profile-property="avatarUrl">
+						</figure>
+					</div>
+					<div class="media-content">
+						<p class="title is-size-4">
+							<span id="displayName" class="is-inline-truncated has-max-width-200" data-profile-property="displayName"></span>
+						</p>
+						<p class="subtitle is-size-7 has-margin-bottom-none">
+							<span class="is-inline-truncated has-max-width-200" data-profile-property="upn"></span>
+						</p>
+					</div>
+				</div>
+				<ul>
+					<li><a href="https://docs.microsoft.com/profile" data-profile-property="profileUrl"><!---->Profile<!----></a></li>
+					<li><a href="https://docs.microsoft.com/profile" data-profile-property="bookmarksUrl"><!---->Bookmarks<!----></a></li>
+					<li><a href="https://docs.microsoft.com/profile" data-profile-property="collectionsUrl"><!---->Collections<!----></a></li>
+				</ul>
+				<div class="has-border-top">
+					<a class="docs-sign-out" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#"><!---->Sign out<!----></a>
+				</div>
+			</div>
+		</div>
+	
+		</div>
+	
+		
+	<!----></div><div class="nav-bar is-content is-hidden-mobile has-border-top"><!---->
+		
+		<a itemprop="url" class="nav-bar-button title has-hover-underline is-4 has-margin-none has-padding-bottom-extra-small" href="https://docs.microsoft.com/">
+			<span><!---->Docs<!----></span>
+		</a>
+	
+		
+			
+		<nav class="nav-bar-nav" role="navigation" aria-label="Site">
+			<ul class="nav-bar-nav-list">
+				
+				<!---->
+		<li class="nav-bar-item">
+			<a class="nav-bar-button has-hover-underline" href="https://docs.microsoft.com/previous-versions">
+				<span><!---->Previous Versions Documentation<!----></span>
+			</a>
+		</li><!---->
+		<li class="dropdown nav-bar-item" hidden="">
+			<button aria-expanded="false" class="dropdown-trigger nav-bar-button has-hover-underline" aria-controls="ax-152">
+				<span><!---->More<!----></span>
+				<span class="nav-bar-button-chevron" aria-hidden="true">
+					<span class="docon docon-chevron-down-light expanded-indicator"></span>
+				</span>
+			</button>
+			<ul class="dropdown-menu" id="ax-152" aria-label="More">
+				<!---->
+		<li class="nav-bar-item" hidden="">
+			<a class="nav-bar-button" href="https://docs.microsoft.com/previous-versions"><!---->Previous Versions Documentation<!----></a>
+		</li>
+	<!---->
+			</ul>
+		</li><!---->
+			</ul>
+		</nav>
+	
+			<span class="nav-bar-spacer is-hidden-mobile"></span>
+			
+		
+	<!----></div></header>		</div>
+		<div class="content-header uhf-container has-padding has-default-focus has-border-bottom-none" data-bi-name="content-header">
+			<nav class="has-padding-none has-padding-left-medium-tablet has-padding-right-medium-tablet has-padding-left-none-uhf-tablet has-padding-left-none-uhf-tablet has-padding-none-desktop has-flex-grow" data-bi-name="breadcrumb" itemscope="" itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Breadcrumb">
+				<ul id="page-breadcrumbs" class="breadcrumbs"><!---->
+		<!---->
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+			
+			<a itemprop="item" href="https://docs.microsoft.com/en-us/">
+				<span itemprop="name">
+					Docs
+				</span>
+			</a>
+			<meta itemprop="position" content="1">
+		</li><!---->
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+			
+			<a itemprop="item" href="https://docs.microsoft.com/en-us/archive/">
+				<span itemprop="name">
+					Archive
+				</span>
+			</a>
+			<meta itemprop="position" content="2">
+		</li><!---->
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+			
+			<a itemprop="item" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/msdn-magazine-issues">
+				<span itemprop="name">
+					MSDN Magazine Issues
+				</span>
+			</a>
+			<meta itemprop="position" content="3">
+		</li><!---->
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+			
+			<a itemprop="item" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/msdn-magazine-issues-from-2009">
+				<span itemprop="name">
+					2009
+				</span>
+			</a>
+			<meta itemprop="position" content="4">
+		</li><!---->
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+			
+			<a itemprop="item" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/msdn-magazine-february-2009">
+				<span itemprop="name">
+					February
+				</span>
+			</a>
+			<meta itemprop="position" content="5">
+		</li><!---->
+		<li itemprop="itemListElement" itemscope="" itemtype="http://schema.org/ListItem">
+			
+			<span itemprop="name">
+				Patterns - WPF Apps With The Model-View-ViewModel Design Pattern
+			</span>
+			<meta itemprop="position" content="6">
+		</li><!---->
+	<!----></ul>
+			</nav>
+		<div class="content-header-controls">
+			<button type="button" class="contents-button button" data-bi-name="contents-expand" aria-haspopup="true">
+				<span class="icon"><span class="docon docon-menu" aria-hidden="true"></span></span>
+				<span>Contents</span>
+			</button>
+		</div>
+		<div class="content-header-controls exit-focus">
+			<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse" aria-controls="action-panel">
+				<span class="icon"><span class="docon docon-exit-mode" aria-hidden="true"></span></span>
+				<span>Exit focus mode</span>
+			</button>
+		</div>
+		<div class="has-padding-none-tablet has-padding-medium is-size-7 is-flex-touch has-flex-justify-content-space-between-touch has-flex-grow">
+			<ul class="is-hidden-mobile action-list has-flex-justify-content-start has-flex-justify-content-end-tablet is-flex is-flex-row has-flex-wrap has-flex-grow is-unstyled">
+				<li>
+					<button type="button" class="bookmark button is-text has-inner-focus is-small is-icon-only-touch" data-list-type="bookmarks" data-bi-name="bookmark" title="Add bookmark for Patterns - WPF Apps With The Model-View-ViewModel Design Pattern | Microsoft Docs" aria-pressed="false">
+						<span class="icon" aria-hidden="true">
+							<span class="docon docon-single-bookmark"></span>
+						</span>
+						<span class="bookmark-status is-visually-hidden-touch is-hidden-portrait">Bookmark</span>
+					</button>
+				</li>
+				<li>
+<div class="sharing dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small is-icon-only-touch" aria-controls="sharing-menu" aria-expanded="false" title="Share This Document" data-bi-name="share">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-sharing"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Share</span>
+	</button>
+	<div class="dropdown-menu has-padding-small" id="sharing-menu">
+		<ul data-bi-name="share-links">
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-twitter" data-bi-name="twitter" href="https://twitter.com/intent/tweet?original_referer=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Farchive%2Fmsdn-magazine%2F2009%2Ffebruary%2Fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern%3FWT.mc_id%3Dtwitter&amp;text=Patterns%20-%20WPF%20Apps%20With%20The%20Model-View-ViewModel%20Design%20Pattern%20%7C%20Microsoft%20Docs&amp;tw_p=tweetbutton&amp;url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Farchive%2Fmsdn-magazine%2F2009%2Ffebruary%2Fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern%3FWT.mc_id%3Dtwitter">
+					<span class="icon">
+						<span class="docon docon-brand-twitter has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-linkedin" data-bi-name="linkedin" href="https://www.linkedin.com/cws/share?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Farchive%2Fmsdn-magazine%2F2009%2Ffebruary%2Fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern%3FWT.mc_id%3Dlinkedin">
+					<span class="icon">
+						<span class="docon docon-brand-linkedin has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-facebook" data-bi-name="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Farchive%2Fmsdn-magazine%2F2009%2Ffebruary%2Fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern%3FWT.mc_id%3Dfacebook">
+					<span class="icon">
+						<span class="docon docon-brand-facebook has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-email" data-bi-name="email" href="mailto:?subject=%5BShared%20Article%5D%20Patterns%20-%20WPF%20Apps%20With%20The%20Model-View-ViewModel%20Design%20Pattern%20%7C%20Microsoft%20Docs&amp;body=Patterns%20-%20WPF%20Apps%20With%20The%20Model-View-ViewModel%20Design%20Pattern%20%7C%20Microsoft%20Docs%0A%0Ahttps%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Farchive%2Fmsdn-magazine%2F2009%2Ffebruary%2Fpatterns-wpf-apps-with-the-model-view-viewmodel-design-pattern%3FWT.mc_id%3Demail">
+					<span class="icon">
+						<span class="docon docon-mail-message-fill has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Email</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>				</li>
+			</ul>
+			<button type="button" class="has-border contents-button button is-small is-text is-hidden-tablet has-inner-focus" aria-label="Contents" data-bi-name="contents-expand">
+				<span class="icon">
+					<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+				</span>
+				<span>Table of contents</span>
+			</button>
+			<div class="is-invisible"></div>
+			<div class="is-hidden-tablet level-item is-flexible level-right">
+				<button type="button" class="page-actions-button button is-small is-text is-hidden-tablet has-inner-focus has-border is-full-height  has-margin-left-small" aria-label="Page Actions" data-bi-name="pageactions">
+					<span aria-hidden="true">. . .</span>
+				</button>
+			</div>
+		</div>
+	</div>
+
+	<div id="banner-holder" class="has-default-focus has-overflow-hidden">
+	</div>
+
+	<div id="disclaimer-holder" class="has-overflow-hidden has-default-focus">
+			<section data-dismissable="disappearing" class="uhf-container has-padding has-padding-top-small has-padding-bottom-small is-info alert is-banner">
+				<button data-dismiss="" type="button" class="delete is-absolute has-top-zero has-right-zero has-margin-extra-small is-large"><span class="visually-hidden">Dismiss alert</span></button>
+				<div class="columns">
+					<div class="column is-12">
+						<div class="level">
+							<div class="level-left has-flex-shrink">
+								<div class="level-item has-flex-shrink">
+									<p class="has-text-white-static disclaimer-title has-margin-top-extra-small has-margin-right-medium has-line-height-reset is-size-7-mobile">
+										<span class="icon">
+											<span class="docon docon-status-error-outline" aria-hidden="true"></span>
+										</span>
+										<span>We're no longer updating this content regularly. Check the <a href="https://support.microsoft.com/en-us/lifecycle/selectindex">Microsoft Product Lifecycle</a> for information about how this product, service, technology, or API is supported.</span>
+									</p>
+								</div>
+							</div>
+							
+			<div class="level-right has-margin-extra-small has-margin-none-tablet">
+				<div class="level-item has-flex-justify-content-start-mobile has-padding-small-tablet">
+					<a href="https://docs.microsoft.com/" class="button is-info is-outlined is-small has-margin-left-extra-small has-margin-right-extra-small">
+						<span>Return to main site</span>
+					</a>
+				</div>
+			</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			</div>
+	</div>
+
+	<div class="mainContainer  uhf-container has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps is-gapless-mobile ">
+
+			<div id="left-container" class="left-container is-hidden-mobile column is-one-third-tablet is-one-quarter-desktop">
+				<nav id="affixed-left-container" class="is-fixed is-flex is-flex-column" role="navigation" aria-label="Primary" data-bi-name="left toc" style="width: 305.344px; top: 245.5px; bottom: 24px;"><form action="javascript:" role="search" aria-label="Search" class="has-margin-bottom-small"><label class="visually-hidden" for="ax-34">Search</label><div class="autocomplete is-block" data-bi-name="autocomplete"><!---->
+		<div class="control has-icons-left">
+			<input role="combobox" maxlength="100" aria-autocomplete="list" autocapitalize="off" autocomplete="off" autocorrect="off" spellcheck="false" id="ax-34" class="autocomplete-input input control has-icons-left is-small is-full-width" type="text" aria-expanded="false" aria-owns="ax-35-listbox" aria-activedescendant="" placeholder="Filter by title">
+
+			<span aria-hidden="true" class="icon is-small is-left">
+				<span class="has-text-primary docon docon-filter-settings"></span>
+			</span>
+
+			<span class="autocomplete-loader loader has-text-primary" aria-hidden="true" hidden=""></span>
+		</div>
+
+		<ul class="autocomplete-suggestions is-vertically-scrollable" role="listbox" id="ax-35-listbox" hidden="">
+			
+		</ul><!----></div></form><ul class="tree is-vertically-scrollable has-flex-grow has-flex-shrink" role="tree" aria-label="Table of contents" data-bi-name="tree"><li role="none"><a aria-setsize="2" aria-level="1" aria-posinset="1" role="treeitem" tabindex="0" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/msdn-magazine-issues">MSDN Magazine Issues</a></li><li class="tree-item is-expanded" aria-setsize="2" aria-level="1" aria-posinset="2" role="treeitem" tabindex="-1" aria-expanded="true"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>2009</span><ul class="tree-group" role="group"><li role="none"><a aria-setsize="13" aria-level="2" aria-posinset="1" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/msdn-magazine-issues-from-2009">Overview</a></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="2" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>January</span></li><li class="tree-item is-expanded" aria-setsize="13" aria-level="2" aria-posinset="3" role="treeitem" tabindex="-1" aria-expanded="true"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>February</span><ul class="tree-group" role="group"><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="1" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/msdn-magazine-february-2009">Overview</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="2" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/best-practice-an-introduction-to-domain-driven-design">Best Practice - An Introduction To Domain-Driven Design</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="3" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/net-interop-getting-started-with-ironruby-and-rspec-part-1">.NET Interop - Getting Started With IronRuby And RSpec, Part 1</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="4" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/oslo-basics-build-metadata-based-applications-with-the-%E2%80%9Coslo%E2%80%9D-platform">"Oslo" Basics - Build Metadata-Based Applications With The “Oslo” Platform</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="5" role="treeitem" tabindex="-1" class="tree-item is-leaf is-selected" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern" aria-current="page">Patterns - WPF Apps With The Model-View-ViewModel Design Pattern</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="6" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/silverlight-build-line-of-business-enterprise-apps-with-silverlight-part-2">Silverlight - Build Line-Of-Business Enterprise Apps With Silverlight, Part 2</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="7" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/msbuild-best-practices-for-creating-reliable-builds-part-1">MSBuild - Best Practices For Creating Reliable Builds, Part 1</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="8" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/editor-s-note-driving-design">Editor's Note - Driving Design</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="9" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/toolbox-the-active-record-pattern-aspect-oriented-programming">Toolbox - The Active Record Pattern, Aspect-Oriented Programming</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="10" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/clr-inside-out-handling-corrupted-state-exceptions">CLR Inside Out - Handling Corrupted State Exceptions</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="11" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/data-points-syndicated-data-and-isolated-storage-in-silverlight">Data Points - Syndicated Data And Isolated Storage In Silverlight</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="12" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/cutting-edge-managing-dynamic-content-delivery-in-silverlight-part-2">Cutting Edge - Managing Dynamic Content Delivery In Silverlight, Part 2</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="13" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-in-practice-convention-over-configuration">Patterns in Practice - Convention Over Configuration</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="14" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/under-the-table-spatial-data-support-in-sql-server-2008">Under The Table - Spatial Data Support In SQL Server 2008</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="15" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/foundations-error-handling-in-workflows">Foundations - Error Handling In Workflows</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="16" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/windows-with-c-visual-c-2010-and-the-parallel-patterns-library">Windows With C++ - Visual C++ 2010 And The Parallel Patterns Library</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="17" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/net-matters-ordered-execution-with-threadpool">.NET Matters - Ordered Execution With ThreadPool</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="18" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/going-places-mobile-device-provisioning-with-syncml">Going Places - Mobile Device Provisioning With SyncML</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="19" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/stack-trace-working-with-an-incomplete-or-invalid-irp">Stack Trace - Working With An Incomplete Or Invalid IRP</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="20" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/stack-trace-what-are-these-system-ptes">Stack Trace - What Are These System PTEs?</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="21" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/%7B-end-bracket-%7D-your-innovative-ideas">{ End Bracket } - Your Innovative Ideas</a></li><li role="none"><a aria-setsize="22" aria-level="3" aria-posinset="22" role="treeitem" tabindex="-1" class="tree-item is-leaf" data-bi-name="tree-leaf" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/february-2009-code-downloads">February 2009 Code Downloads</a></li></ul></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="4" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>March</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="5" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>April</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="6" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>May</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="7" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>June</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="8" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>July</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="9" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>August</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="10" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>September</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="11" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>October</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="12" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>November</span></li><li class="tree-item" aria-setsize="13" aria-level="2" aria-posinset="13" role="treeitem" tabindex="-1" aria-expanded="false"><span class="tree-expander" data-bi-name="tree-expander"><span class="tree-expander-indicator docon docon-chevron-right-light" aria-hidden="true"></span>December</span></li></ul></li></ul></nav>
+			</div>
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" lang="en-us" dir="ltr">
+
+
+
+						
+
+						<ul class="metadata page-metadata" data-bi-name="page info" lang="en-us" dir="ltr">
+							<li class="displayDate">
+								<time role="presentation" datetime="2016-12-08T00:00:00.000Z" data-article-date-source="ms.date">12/08/2016</time>
+							</li>
+								<li class="readingTime">33 minutes to read</li>
+
+						</ul>
+
+						<nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+							<h3>In this article</h3>
+						<ol><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#order-vs-chaos">Order vs. Chaos</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-evolution-of-model-view-viewmodel">The Evolution of Model-View-ViewModel</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#why-wpf-developers-love-mvvm">Why WPF Developers Love MVVM</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-demo-application">The Demo Application</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#relaying-command-logic">Relaying Command Logic</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#viewmodel-class-hierarchy">ViewModel Class Hierarchy</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#viewmodelbase-class">ViewModelBase Class</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#commandviewmodel-class">CommandViewModel Class</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#mainwindowviewmodel-class">MainWindowViewModel Class</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#applying-a-view-to-a-viewmodel">Applying a View to a ViewModel</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-data-model-and-repository">The Data Model and Repository</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#new-customer-data-entry-form">New Customer Data Entry Form</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#all-customers-view">All Customers View</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#wrapping-up">Wrapping Up</a></li></ol></nav>
+
+						<!-- <content> -->
+							<hr>
+<p>February 2009</p>
+<p>Volume 24 Number 02</p>
+<h1 id="patterns---wpf-apps-with-the-model-view-viewmodel-design-pattern">Patterns - WPF Apps With The Model-View-ViewModel Design Pattern</h1>
+<p>By <a href="https://docs.microsoft.com/en-us%5Carchive%5Cmsdn-magazine%5Cauthors%5CJosh_Smith" data-linktype="absolute-path">Josh Smith</a> | February 2009</p>
+<p>There are popular design patterns that can help to tame this unwieldy beast, but properly separating and addressing the multitude of concerns can be difficult. The more complicated the patterns are, the more likely that shortcuts will be used later on which undermine all previous efforts to do things the right way.</p>
+<p>It is not always the design patterns at fault. Sometimes we use complicated design patterns, which require writing a lot of code because the UI platform in use does not lend itself well to a simpler pattern. What's needed is a platform that makes it easy to build UIs using simple, time-tested, developer-approved design patterns. Fortunately, Windows Presentation Foundation (WPF) provides exactly that.</p>
+<p>As the software world continues to adopt WPF at an increasing rate, the WPF community has been developing its own ecosystem of patterns and practices. In this article, I'll review some of those best practices for designing and implementing client applications with WPF. By leveraging some core features of WPF in conjunction with the Model-View-ViewModel (MVVM) design pattern, I will walk through an example program that demonstrates just how simple it can be to build a WPF application the "right way."</p>
+<p>By the end of this article, it will be clear how data templates, commands, data binding, the resource system, and the MVVM pattern all fit together to create a simple, testable, robust framework on which any WPF application can thrive. The demonstration program that accompanies this article can serve as a template for a real WPF application that uses MVVM as its core architecture. The unit tests in the demo solution show how easy it is to test the functionality of an application's user interface when that functionality exists in a set of ViewModel classes. Before diving into the details, let's review why you should use a pattern like MVVM in the first place.</p>
+<h2 id="order-vs-chaos">Order vs. Chaos<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#order-vs-chaos" aria-labelledby="order-vs-chaos"></a></h2>
+<p>It is unnecessary and counter productive to use design patterns in a simple "Hello, World!" program. Any competent developer can understand a few lines of code at a glance. However, as the number of features in a program increases, the number of lines of code and moving parts increase accordingly. Eventually, the complexity of a system, and the recurring problems it contains, encourages developers to organize their code in such a way that it is easier to comprehend, discuss, extend, and troubleshoot. We diminish the cognitive chaos of a complex system by applying well-known names to certain entities in the source code. We determine the name to apply to a piece of code by considering its functional role in the system.</p>
+<p>Developers often intentionally structure their code according to a design pattern, as opposed to letting the patterns emerge organically. There is nothing wrong with either approach, but in this article, I examine the benefits of explicitly using MVVM as the architecture of a WPF application. The names of certain classes include well-known terms from the MVVM pattern, such as ending with "ViewModel" if the class is an abstraction of a view. This approach helps avoid the cognitive chaos mentioned earlier. Instead, you can happily exist in a state of controlled chaos, which is the natural state of affairs in most professional software development projects!</p>
+<h2 id="the-evolution-of-model-view-viewmodel">The Evolution of Model-View-ViewModel<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-evolution-of-model-view-viewmodel" aria-labelledby="the-evolution-of-model-view-viewmodel"></a></h2>
+<p>Ever since people started to create software user interfaces, there have been popular design patterns to help make it easier. For example, the Model-View-Presenter (MVP) pattern has enjoyed popularity on various UI programming platforms. MVP is a variation of the Model-View-Controller pattern, which has been around for decades. In case you have never used the MVP pattern before, here is a simplified explanation. What you see on the screen is the View, the data it displays is the model, and the Presenter hooks the two together. The view relies on a Presenter to populate it with model data, react to user input, provide input validation (perhaps by delegating to the model), and other such tasks. If you would like to learn more about the Model View Presenter, I suggest you read Jean-Paul Boodhoo's <a href="http://msdn.microsoft.com/magazine/cc188690" data-linktype="external">August 2006 Design Patterns column</a>.</p>
+<p>Back in 2004, Martin Fowler published an article about a pattern named <a href="http://martinfowler.com/eaadev/presentationmodel.html" data-linktype="external">Presentation Model</a> (PM). The PM pattern is similar to MVP in that it separates a view from its behavior and state. The interesting part of the PM pattern is that an abstraction of a view is created, called the Presentation Model. A view, then, becomes merely a rendering of a Presentation Model. In Fowler's explanation, he shows that the Presentation Model frequently updates its View, so that the two stay in sync with each other. That synchronization logic exists as code in the Presentation Model classes.</p>
+<p>In 2005, John Gossman, currently one of the WPF and Silverlight Architects at Microsoft, unveiled the <a href="http://blogs.msdn.com/johngossman/archive/2005/10/08/478683.aspx" data-linktype="external">Model-View-ViewModel (MVVM) pattern</a> on his blog. MVVM is identical to Fowler's Presentation Model, in that both patterns feature an abstraction of a View, which contains a View's state and behavior. Fowler introduced Presentation Model as a means of creating a UI platform-independent abstraction of a View, whereas Gossman introduced MVVM as a standardized way to leverage core features of WPF to simplify the creation of user interfaces. In that sense, I consider MVVM to be a specialization of the more general PM pattern, tailor-made for the WPF and Silverlight platforms.</p>
+<p>In Glenn Block's excellent article " <a href="http://msdn.microsoft.com/magazine/cc785479" data-linktype="external">Prism: Patterns for Building Composite Applications with WPF</a>" in the September 2008 issue, he explains the Microsoft Composite Application Guidance for WPF. The term ViewModel is never used. Instead, the term Presentation Model is used to describe the abstraction of a view. Throughout this article, however, I'll refer to the pattern as MVVM and the abstraction of a view as a ViewModel. I find this terminology is much more prevelant in the WPF and Silverlight communities.</p>
+<p>Unlike the Presenter in MVP, a ViewModel does not need a reference to a view. The view binds to properties on a ViewModel, which, in turn, exposes data contained in model objects and other state specific to the view. The bindings between view and ViewModel are simple to construct because a ViewModel object is set as the DataContext of a view. If property values in the ViewModel change, those new values automatically propagate to the view via data binding. When the user clicks a button in the View, a command on the ViewModel executes to perform the requested action. The ViewModel, never the View, performs all modifications made to the model data.</p>
+<p>The view classes have no idea that the model classes exist, while the ViewModel and model are unaware of the view. In fact, the model is completely oblivious to the fact that the ViewModel and view exist. This is a very loosely coupled design, which pays dividends in many ways, as you will soon see.</p>
+<h2 id="why-wpf-developers-love-mvvm">Why WPF Developers Love MVVM<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#why-wpf-developers-love-mvvm" aria-labelledby="why-wpf-developers-love-mvvm"></a></h2>
+<p>Once a developer becomes comfortable with WPF and MVVM, it can be difficult to differentiate the two. MVVM is the lingua franca of WPF developers because it is well suited to the WPF platform, and WPF was designed to make it easy to build applications using the MVVM pattern (amongst others). In fact, Microsoft was using MVVM internally to develop WPF applications, such as Microsoft Expression Blend, while the core WPF platform was under construction. Many aspects of WPF, such as the look-less control model and data templates, utilize the strong separation of display from state and behavior promoted by MVVM.</p>
+<p>The single most important aspect of WPF that makes MVVM a great pattern to use is the data binding infrastructure. By binding properties of a view to a ViewModel, you get loose coupling between the two and entirely remove the need for writing code in a ViewModel that directly updates a view. The data binding system also supports input validation, which provides a standardized way of transmitting validation errors to a view.</p>
+<p>Two other features of WPF that make this pattern so usable are data templates and the resource system. Data templates apply Views to ViewModel objects shown in the user interface. You can declare templates in XAML and let the resource system automatically locate and apply those templates for you at run time. You can learn more about binding and data templates in my July 2008 article, " <a href="http://msdn.microsoft.com/magazine/cc700358" data-linktype="external">Data and WPF: Customize Data Display with Data Binding and WPF</a>."</p>
+<p>If it were not for the support for commands in WPF, the MVVM pattern would be much less powerful. In this article, I will show you how a ViewModel can expose commands to a View, thus allowing the view to consume its functionality. If you aren't familiar with commanding, I recommend that you read Brian Noyes's comprehensive article, " <a href="http://msdn.microsoft.com/magazine/cc785480" data-linktype="external">Advanced WPF: Understanding Routed Events and Commands in WPF</a>," from the September 2008 issue.</p>
+<p>In addition to the WPF (and Silverlight 2) features that make MVVM a natural way to structure an application, the pattern is also popular because ViewModel classes are easy to unit test. When an application's interaction logic lives in a set of ViewModel classes, you can easily write code that tests it. In a sense, Views and unit tests are just two different types of ViewModel consumers. Having a suite of tests for an application's ViewModels provides free and fast regression testing, which helps reduce the cost of maintaining an application over time.</p>
+<p>In addition to promoting the creation of automated regression tests, the testability of ViewModel classes can assist in properly designing user interfaces that are easy to skin. When you are designing an application, you can often decide whether something should be in the view or the ViewModel by imagining that you want to write a unit test to consume the ViewModel. If you can write unit tests for the ViewModel without creating any UI objects, you can also completely skin the ViewModel because it has no dependencies on specific visual elements.</p>
+<p>Lastly, for developers who work with visual designers, using MVVM makes it much easier to create a smooth designer/developer workflow. Since a view is just an arbitrary consumer of a ViewModel, it is easy to just rip one view out and drop in a new view to render a ViewModel. This simple step allows for rapid prototyping and evaluation of user interfaces made by the designers.</p>
+<p>The development team can focus on creating robust ViewModel classes, and the design team can focus on making user-friendly Views. Connecting the output of both teams can involve little more than ensuring that the correct bindings exist in a view's XAML file.</p>
+<h2 id="the-demo-application">The Demo Application<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-demo-application" aria-labelledby="the-demo-application"></a></h2>
+<p>At this point, I have reviewed MVVM's history and theory of operation. I also examined why it is so popular amongst WPF developers. Now it is time to roll up your sleeves and see the pattern in action. The demo application that accompanies this article uses MVVM in a variety of ways. It provides a fertile source of examples to help put the concepts into a meaningful context. I created the demo application in Visual Studio 2008 SP1, against the Microsoft .NET Framework 3.5 SP1. The unit tests run in the Visual Studio unit testing system.</p>
+<p>The application can contain any number of "workspaces," each of which the user can open by clicking on a command link in the navigation area on the left. All workspaces live in a TabControl on the main content area. The user can close a workspace by clicking the Close button on that workspace's tab item. The application has two available workspaces: "All Customers" and "New Customer." After running the application and opening some workspaces, the UI looks something like <strong>Figure 1</strong>.</p>
+<p><img src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/dd419663.fig01_l.gif(en-us,msdn.10).gif" alt="Figure 1 Workspaces screenshot" data-linktype="relative-path"><br>
+<strong>Figure 1 Workspaces</strong></p>
+<p>Only one instance of the "All Customers" workspace can be open at a time, but any number of "New Customer" workspaces can be open at once. When the user decides to create a new customer, she must fill in the data entry form in <strong>Figure 2</strong>.</p>
+<p><img src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/dd419663.fig02_l.gif(en-us,msdn.10).gif" alt="New Customer Data Entry Form" title="New Customer Data Entry Form" data-linktype="relative-path"><br>
+<strong>Figure 2 New Customer Data Entry Form</strong></p>
+<p>After filling in the data entry form with valid values and clicking the Save button, the new customer's name appears in the tab item and that customer is added to the list of all customers. The application does not have support for deleting or editing an existing customer, but that functionality, and many other features similar to it, are easy to implement by building on top of the existing application architecture. Now that you have a high-level understanding of what the demo application does, let's investigate how it was designed and implemented.</p>
+<h2 id="relaying-command-logic">Relaying Command Logic<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#relaying-command-logic" aria-labelledby="relaying-command-logic"></a></h2>
+<p>Every view in the app has an empty codebehind file, except for the standard boilerplate code that calls InitializeComponent in the class's constructor. In fact, you could remove the views' codebehind files from the project and the application would still compile and run correctly. Despite the lack of event handling methods in the views, when the user clicks on buttons, the application reacts and satisfies the user's requests. This works because of bindings that were established on the Command property of Hyperlink, Button, and MenuItem controls displayed in the UI. Those bindings ensure that when the user clicks on the controls, ICommand objects exposed by the ViewModel execute. You can think of the command object as an adapter that makes it easy to consume a ViewModel's functionality from a view declared in XAML.</p>
+<p>When a ViewModel exposes an instance property of type I­Command, the command object typically uses that ViewModel object to get its job done. One possible implementation pattern is to create a private nested class within the ViewModel class, so that the command has access to private members of its containing ViewModel and does not pollute the namespace. That nested class implements the ICommand interface, and a reference to the containing ViewModel object is injected into its constructor. However, creating a nested class that implements ICommand for each command exposed by a ViewModel can bloat the size of the ViewModel class. More code means a greater potential for bugs.</p>
+<p>In the demo application, the RelayCommand class solves this problem. RelayCommand allows you to inject the command's logic via delegates passed into its constructor. This approach allows for terse, concise command implementation in ViewModel classes. RelayCommand is a simplified variation of the DelegateCommand found in the <a href="http://msdn.microsoft.com/library/cc707890" data-linktype="external">Microsoft Composite Application Library</a>. The Relay­Command class is shown in <strong>Figure 3</strong>.</p>
+<p>Figure 3 The RelayCommand Class</p>
+<div class="codeHeader" id="code-try-0" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="public class RelayCommand : ICommand
+{
+    #region Fields 
+    readonly Action&lt;object&gt; _execute;
+    readonly Predicate&lt;object&gt; _canExecute;
+    #endregion // Fields 
+    #region Constructors 
+    public RelayCommand(Action&lt;object&gt; execute) : this(execute, null) { }
+    public RelayCommand(Action&lt;object&gt; execute, Predicate&lt;object&gt; canExecute)
+    {
+        if (execute == null)
+            throw new ArgumentNullException(&quot;execute&quot;);
+        _execute = execute; _canExecute = canExecute;
+    }
+    #endregion // Constructors 
+    #region ICommand Members 
+    [DebuggerStepThrough]
+    public bool CanExecute(object parameter)
+    {
+        return _canExecute == null ? true : _canExecute(parameter);
+    }
+    public event EventHandler CanExecuteChanged
+    {
+        add { CommandManager.RequerySuggested += value; }
+        remove { CommandManager.RequerySuggested -= value; }
+    }
+    public void Execute(object parameter) { _execute(parameter); }
+    #endregion // ICommand Members 
+}
+"><span><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RelayCommand</span> : <span class="hljs-title">ICommand</span>
+{
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">region</span> Fields </span>
+    <span class="hljs-keyword">readonly</span> Action&lt;<span class="hljs-keyword">object</span>&gt; _execute;
+    <span class="hljs-keyword">readonly</span> Predicate&lt;<span class="hljs-keyword">object</span>&gt; _canExecute;
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endregion</span> // Fields </span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">region</span> Constructors </span>
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RelayCommand</span>(<span class="hljs-params">Action&lt;<span class="hljs-keyword">object</span>&gt; execute</span>) : <span class="hljs-title">this</span>(<span class="hljs-params">execute, <span class="hljs-literal">null</span></span>)</span> { }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">RelayCommand</span>(<span class="hljs-params">Action&lt;<span class="hljs-keyword">object</span>&gt; execute, Predicate&lt;<span class="hljs-keyword">object</span>&gt; canExecute</span>)</span>
+    {
+        <span class="hljs-keyword">if</span> (execute == <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-string">"execute"</span>);
+        _execute = execute; _canExecute = canExecute;
+    }
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endregion</span> // Constructors </span>
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">region</span> ICommand Members </span>
+    [<span class="hljs-meta">DebuggerStepThrough</span>]
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">CanExecute</span>(<span class="hljs-params"><span class="hljs-keyword">object</span> parameter</span>)</span>
+    {
+        <span class="hljs-keyword">return</span> _canExecute == <span class="hljs-literal">null</span> ? <span class="hljs-literal">true</span> : _canExecute(parameter);
+    }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> EventHandler CanExecuteChanged
+    {
+        <span class="hljs-keyword">add</span> { CommandManager.RequerySuggested += <span class="hljs-keyword">value</span>; }
+        <span class="hljs-keyword">remove</span> { CommandManager.RequerySuggested -= <span class="hljs-keyword">value</span>; }
+    }
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span>(<span class="hljs-params"><span class="hljs-keyword">object</span> parameter</span>)</span> { _execute(parameter); }
+    <span class="hljs-meta">#<span class="hljs-meta-keyword">endregion</span> // ICommand Members </span>
+}
+</span></code></pre>
+<p>The CanExecuteChanged event, which is part of the ICommandinterface implementation, has some interesting features. It delegates the event subscription to the CommandManager.RequerySuggested event. This ensures that the WPF commanding infrastructure asks all RelayCommand objects if they can execute whenever it asks the built-in commands. The following code from the CustomerViewModel class, which I will examine in-depth later, shows how to configure a RelayCommand with lambda expressions:</p>
+<div class="codeHeader" id="code-try-1" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="RelayCommand _saveCommand; public ICommand SaveCommand
+{
+    get
+    {
+        if (_saveCommand == null) {
+            _saveCommand = new RelayCommand(param =&gt; this.Save(), 
+                param =&gt; this.CanSave);
+        }
+        return _saveCommand;
+    }
+}
+"><span>RelayCommand _saveCommand; <span class="hljs-keyword">public</span> ICommand SaveCommand
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">if</span> (_saveCommand == <span class="hljs-literal">null</span>) {
+            _saveCommand = <span class="hljs-keyword">new</span> RelayCommand(param =&gt; <span class="hljs-keyword">this</span>.Save(), 
+                param =&gt; <span class="hljs-keyword">this</span>.CanSave);
+        }
+        <span class="hljs-keyword">return</span> _saveCommand;
+    }
+}
+</span></code></pre>
+<h2 id="viewmodel-class-hierarchy">ViewModel Class Hierarchy<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#viewmodel-class-hierarchy" aria-labelledby="viewmodel-class-hierarchy"></a></h2>
+<p>Most ViewModel classes need the same features. They often needto implement the INotifyPropertyChanged interface, they usually need to have a user-friendly display name, and, in the case of workspaces, they need the ability to close (that is, be removedfrom the UI). This problem naturally lends itself to the creation of a ViewModel base class or two, so that new ViewModel classes can inherit all of the common functionality from a base class. TheViewModel classes form the inheritance hierarchy seen in <strong>Figure 4</strong>.</p>
+<p><img src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/dd419663.fig04_l.gif(en-us,msdn.10).gif" alt="Inheritance Hierarchy" title="Inheritance Hierarchy" data-linktype="relative-path"><br>
+<strong>Figure 4 Inheritance Hierarchy</strong></p>
+<p>Having a base class for all of your ViewModels is by no means a requirement. If you prefer to gain features in your classes by composing many smaller classes together, instead of using inheritance, that is not a problem. Just like any other design pattern, MVVM is a set of guidelines, not rules.</p>
+<h2 id="viewmodelbase-class">ViewModelBase Class<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#viewmodelbase-class" aria-labelledby="viewmodelbase-class"></a></h2>
+<p>ViewModelBase is the root class in the hierarchy, which is why it implements the commonly used INotifyPropertyChanged interface and has a DisplayName property. The INotifyPropertyChanged interface contains an event called PropertyChanged. Whenever a property on a ViewModel object has a new value, it can raise the PropertyChanged event to notify the WPF binding system of the new value. Upon receiving that notification, the binding system queries the property, and the bound property on some UI element receives the new value.</p>
+<p>In order for WPF to know which property on the ViewModel objecthas changed, the PropertyChangedEventArgs class exposes a PropertyName property of type String. You must be careful to pass the correct property name into that event argument; otherwise, WPF will end up querying the wrong property for a new value.</p>
+<p>One interesting aspect of ViewModelBase is that it provides the ability to verify that a property with a given name actually exists on the ViewModel object. This is very useful when refactoring,because changing a property's name via the Visual Studio 2008 refactoring feature will not update strings in your source code that happen to contain that property's name (nor should it). Raising the PropertyChanged event with an incorrect property name in the event argument can lead to subtle bugs that are difficult to track down, so this little feature can be a huge timesaver. The code from ViewModelBase that adds this useful support is shown in <strong>Figure 5</strong>.</p>
+<p>Figure 5 Verifying a Property</p>
+<div class="codeHeader" id="code-try-2" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In ViewModelBase.cs 
+public event PropertyChangedEventHandler PropertyChanged;
+protected virtual void OnPropertyChanged(string propertyName)
+{
+    this.VerifyPropertyName(propertyName);
+    PropertyChangedEventHandler handler = this.PropertyChanged;
+    if (handler != null)
+    {
+        var e = new PropertyChangedEventArgs(propertyName); 
+        handler(this, e);
+    }
+}
+[Conditional(&quot;DEBUG&quot;)]
+[DebuggerStepThrough]
+public void VerifyPropertyName(string propertyName)
+{
+    // Verify that the property name matches a real, 
+    // public, instance property on this object. 
+    if (TypeDescriptor.GetProperties(this)[propertyName] == null)
+    {
+        string msg = &quot;Invalid property name: &quot; + propertyName;
+        if (this.ThrowOnInvalidPropertyName) 
+          throw new Exception(msg);
+        else 
+          Debug.Fail(msg);
+    }
+}
+"><span><span class="hljs-comment">// In ViewModelBase.cs </span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">event</span> PropertyChangedEventHandler PropertyChanged;
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnPropertyChanged</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> propertyName</span>)</span>
+{
+    <span class="hljs-keyword">this</span>.VerifyPropertyName(propertyName);
+    PropertyChangedEventHandler handler = <span class="hljs-keyword">this</span>.PropertyChanged;
+    <span class="hljs-keyword">if</span> (handler != <span class="hljs-literal">null</span>)
+    {
+        <span class="hljs-keyword">var</span> e = <span class="hljs-keyword">new</span> PropertyChangedEventArgs(propertyName); 
+        handler(<span class="hljs-keyword">this</span>, e);
+    }
+}
+[<span class="hljs-meta">Conditional(<span class="hljs-string">"DEBUG"</span>)</span>]
+[<span class="hljs-meta">DebuggerStepThrough</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">VerifyPropertyName</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> propertyName</span>)</span>
+{
+    <span class="hljs-comment">// Verify that the property name matches a real, </span>
+    <span class="hljs-comment">// public, instance property on this object. </span>
+    <span class="hljs-keyword">if</span> (TypeDescriptor.GetProperties(<span class="hljs-keyword">this</span>)[propertyName] == <span class="hljs-literal">null</span>)
+    {
+        <span class="hljs-keyword">string</span> msg = <span class="hljs-string">"Invalid property name: "</span> + propertyName;
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.ThrowOnInvalidPropertyName) 
+          <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> Exception(msg);
+        <span class="hljs-keyword">else</span> 
+          Debug.Fail(msg);
+    }
+}
+</span></code></pre>
+<h2 id="commandviewmodel-class">CommandViewModel Class<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#commandviewmodel-class" aria-labelledby="commandviewmodel-class"></a></h2>
+<p>The simplest concrete ViewModelBase subclass is CommandViewModel. It exposes a property called Command of type ICommand. MainWindowViewModel exposes a collection of theseobjects through its Commands property. The navigation area on theleft-hand side of the main window displays a link for each CommandViewModel exposed by MainWindowViewModel, such as "View all customers" and "Create new customer." When the user clicks on a link, thus executing one of those commands, a workspace opens in the TabControl on the main window. The CommandViewModel class definition is shown here:</p>
+<div class="codeHeader" id="code-try-3" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="public class CommandViewModel : ViewModelBase
+{
+    public CommandViewModel(string displayName, ICommand command)
+    {
+        if (command == null)
+            throw new ArgumentNullException(&quot;command&quot;);
+        base.DisplayName = displayName;
+        this.Command = command;
+    }
+    public ICommand Command { get; private set; }
+}
+"><span><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CommandViewModel</span> : <span class="hljs-title">ViewModelBase</span>
+{
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CommandViewModel</span>(<span class="hljs-params"><span class="hljs-keyword">string</span> displayName, ICommand command</span>)</span>
+    {
+        <span class="hljs-keyword">if</span> (command == <span class="hljs-literal">null</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> ArgumentNullException(<span class="hljs-string">"command"</span>);
+        <span class="hljs-keyword">base</span>.DisplayName = displayName;
+        <span class="hljs-keyword">this</span>.Command = command;
+    }
+    <span class="hljs-keyword">public</span> ICommand Command { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; }
+}
+</span></code></pre>
+<p>In the MainWindowResources.xaml file there exists a DataTemplate whose key is "CommandsTemplate". MainWindow uses that template to render the collection of CommandViewModels mentioned earlier. The template simply renders each CommandViewModel object as a link in an ItemsControl. Each Hyperlink's Command property is bound to the Command property of a CommandViewModel. That XAML is shown in <strong>Figure 6</strong>.</p>
+<p>Figure 6 Render the List of Commands</p>
+<div class="codeHeader" id="code-try-4" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;!-- In MainWindowResources.xaml --&gt;
+&lt;!-- This template explains how to render the list of commands 
+on the left side in the main window (the &#39;Control Panel&#39; area). --&gt;
+&lt;DataTemplate x:Key=&quot;CommandsTemplate&quot;&gt;
+    &lt;ItemsControl ItemsSource=&quot;{Binding Path=Commands}&quot;&gt;
+        &lt;ItemsControl.ItemTemplate&gt;
+            &lt;DataTemplate&gt;
+                &lt;TextBlock Margin=&quot;2,6&quot;&gt; 
+                    &lt;Hyperlink Command=&quot;{Binding Path=Command}&quot;&gt; 
+                    &lt;TextBlock Text=&quot;{Binding Path=DisplayName}&quot; /&gt; 
+                    &lt;/Hyperlink&gt; 
+                &lt;/TextBlock&gt;
+            &lt;/DataTemplate&gt;
+        &lt;/ItemsControl.ItemTemplate&gt;
+    &lt;/ItemsControl&gt;
+&lt;/DataTemplate&gt;
+"><span><span class="hljs-comment">&lt;!-- In MainWindowResources.xaml --&gt;</span>
+<span class="hljs-comment">&lt;!-- This template explains how to render the list of commands 
+on the left side in the main window (the 'Control Panel' area). --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span> <span class="hljs-attr">x:Key</span>=<span class="hljs-string">"CommandsTemplate"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ItemsControl</span> <span class="hljs-attr">ItemsSource</span>=<span class="hljs-string">"{Binding Path=Commands}"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ItemsControl.ItemTemplate</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span>&gt;</span>
+                <span class="hljs-tag">&lt;<span class="hljs-name">TextBlock</span> <span class="hljs-attr">Margin</span>=<span class="hljs-string">"2,6"</span>&gt;</span> 
+                    <span class="hljs-tag">&lt;<span class="hljs-name">Hyperlink</span> <span class="hljs-attr">Command</span>=<span class="hljs-string">"{Binding Path=Command}"</span>&gt;</span> 
+                    <span class="hljs-tag">&lt;<span class="hljs-name">TextBlock</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"{Binding Path=DisplayName}"</span> /&gt;</span> 
+                    <span class="hljs-tag">&lt;/<span class="hljs-name">Hyperlink</span>&gt;</span> 
+                <span class="hljs-tag">&lt;/<span class="hljs-name">TextBlock</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-name">ItemsControl.ItemTemplate</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">ItemsControl</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+</span></code></pre>
+<h2 id="mainwindowviewmodel-class">MainWindowViewModel Class<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#mainwindowviewmodel-class" aria-labelledby="mainwindowviewmodel-class"></a></h2>
+<p>As previously seen in the class diagram, the WorkspaceViewModelclass derives from ViewModelBase and adds the ability to close. By "close," I mean that something removes the workspace from the user interface at run time. Three classes derive from WorkspaceViewModel: MainWindowViewModel, AllCustomersViewModel, and CustomerViewModel. MainWindowViewModel's request to close is handled by the App class, which creates the MainWindow and its ViewModel, as seen in <strong>Figure 7</strong>.</p>
+<p>Figure 7 Create the ViewModel</p>
+<div class="codeHeader" id="code-try-5" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In App.xaml.cs 
+protected override void OnStartup(StartupEventArgs e)
+{
+    base.OnStartup(e); MainWindow window = new MainWindow();
+    // Create the ViewModel to which 
+    // the main window binds. 
+    string path = &quot;Data/customers.xml&quot;;
+    var viewModel = new MainWindowViewModel(path);
+    // When the ViewModel asks to be closed, 
+    // close the window. 
+    viewModel.RequestClose += delegate { window.Close(); };
+    // Allow all controls in the window to 
+    // bind to the ViewModel by setting the 
+    // DataContext, which propagates down 
+    // the element tree. 
+    window.DataContext = viewModel;
+    window.Show();
+}
+"><span><span class="hljs-comment">// In App.xaml.cs </span>
+<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">OnStartup</span>(<span class="hljs-params">StartupEventArgs e</span>)</span>
+{
+    <span class="hljs-keyword">base</span>.OnStartup(e); MainWindow window = <span class="hljs-keyword">new</span> MainWindow();
+    <span class="hljs-comment">// Create the ViewModel to which </span>
+    <span class="hljs-comment">// the main window binds. </span>
+    <span class="hljs-keyword">string</span> path = <span class="hljs-string">"Data/customers.xml"</span>;
+    <span class="hljs-keyword">var</span> viewModel = <span class="hljs-keyword">new</span> MainWindowViewModel(path);
+    <span class="hljs-comment">// When the ViewModel asks to be closed, </span>
+    <span class="hljs-comment">// close the window. </span>
+    viewModel.RequestClose += <span class="hljs-keyword">delegate</span> { window.Close(); };
+    <span class="hljs-comment">// Allow all controls in the window to </span>
+    <span class="hljs-comment">// bind to the ViewModel by setting the </span>
+    <span class="hljs-comment">// DataContext, which propagates down </span>
+    <span class="hljs-comment">// the element tree. </span>
+    window.DataContext = viewModel;
+    window.Show();
+}
+</span></code></pre>
+<p>MainWindow contains a menu item whose Command property is bound to the MainWindowViewModel's CloseCommand property. When the user clicks on that menu item, the App class responds by calling the window's Close method, like so:</p>
+<div class="codeHeader" id="code-try-6" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;!-- In MainWindow.xaml --&gt;
+&lt;Menu&gt;
+    &lt;MenuItem Header=&quot;_File&quot;&gt;
+        &lt;MenuItem Header=&quot;_Exit&quot; 
+                    Command=&quot;{Binding Path=CloseCommand}&quot; /&gt;
+    &lt;/MenuItem&gt;
+    &lt;MenuItem Header=&quot;_Edit&quot; /&gt;
+    &lt;MenuItem Header=&quot;_Options&quot; /&gt;
+    &lt;MenuItem Header=&quot;_Help&quot; /&gt;
+&lt;/Menu&gt;
+"><span><span class="hljs-comment">&lt;!-- In MainWindow.xaml --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">Menu</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">Header</span>=<span class="hljs-string">"_File"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">Header</span>=<span class="hljs-string">"_Exit"</span> 
+                    <span class="hljs-attr">Command</span>=<span class="hljs-string">"{Binding Path=CloseCommand}"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">MenuItem</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">Header</span>=<span class="hljs-string">"_Edit"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">Header</span>=<span class="hljs-string">"_Options"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">MenuItem</span> <span class="hljs-attr">Header</span>=<span class="hljs-string">"_Help"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">Menu</span>&gt;</span>
+</span></code></pre>
+<p>MainWindowViewModel contains an observable collection of WorkspaceViewModel objects, called Workspaces. The main window contains a TabControl whose ItemsSource property is bound to that collection. Each tab item has a Close button whose Command property is bound to the CloseCommand of its corresponding WorkspaceViewModel instance. An abridged version of the template that configures each tab item is shown in the code that follows.The code is found in MainWindowResources.xaml, and the template explains how to render a tab item with a Close button:</p>
+<div class="codeHeader" id="code-try-7" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;DataTemplate x:Key=&quot;ClosableTabItemTemplate&quot;&gt;
+    &lt;DockPanel Width=&quot;120&quot;&gt;
+        &lt;Button Command=&quot;{Binding Path=CloseCommand}&quot; 
+                Content=&quot;X&quot; 
+                DockPanel.Dock=&quot;Right&quot; 
+                Width=&quot;16&quot; 
+                Height=&quot;16&quot; /&gt;
+        &lt;ContentPresenter 
+            Content=&quot;{Binding Path=DisplayName}&quot; /&gt;
+    &lt;/DockPanel&gt;
+&lt;/DataTemplate&gt;
+"><span><span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span> <span class="hljs-attr">x:Key</span>=<span class="hljs-string">"ClosableTabItemTemplate"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DockPanel</span> <span class="hljs-attr">Width</span>=<span class="hljs-string">"120"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">Button</span> <span class="hljs-attr">Command</span>=<span class="hljs-string">"{Binding Path=CloseCommand}"</span> 
+                <span class="hljs-attr">Content</span>=<span class="hljs-string">"X"</span> 
+                <span class="hljs-attr">DockPanel.Dock</span>=<span class="hljs-string">"Right"</span> 
+                <span class="hljs-attr">Width</span>=<span class="hljs-string">"16"</span> 
+                <span class="hljs-attr">Height</span>=<span class="hljs-string">"16"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">ContentPresenter</span> 
+            <span class="hljs-attr">Content</span>=<span class="hljs-string">"{Binding Path=DisplayName}"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DockPanel</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+</span></code></pre>
+<p>When the user clicks the Close button in a tab item, thatWorkspace­ViewModel's CloseCommand executes, causing itsRequest­Close event to fire. MainWindowViewModel monitors theRequestClose event of its workspaces and removes the workspace fromthe Workspaces collection upon request. Since the Main­Window'sTabControl has its ItemsSource property bound to the observablecollection of WorkspaceViewModels, removing an item from thecollection causes the corresponding workspace to be removed fromthe TabControl. That logic from Main­WindowViewModel is shown in <strong>Figure 8</strong>.</p>
+<p>Figure 8 Removing Workspace from the UI</p>
+<div class="codeHeader" id="code-try-8" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In MainWindowViewModel.cs 
+ObservableCollection&lt;WorkspaceViewModel&gt; _workspaces;
+public ObservableCollection&lt;WorkspaceViewModel&gt; Workspaces
+{
+    get
+    {
+        if (_workspaces == null)
+        {
+            _workspaces = new ObservableCollection&lt;WorkspaceViewModel&gt;();
+            _workspaces.CollectionChanged += this.OnWorkspacesChanged;
+        }
+        return _workspaces;
+    }
+}
+void OnWorkspacesChanged(object sender, NotifyCollectionChangedEventArgs e)
+{
+    if (e.NewItems != null &amp;&amp; e.NewItems.Count != 0)
+        foreach (WorkspaceViewModel workspace in e.NewItems)
+            workspace.RequestClose += this.OnWorkspaceRequestClose;
+    if (e.OldItems != null &amp;&amp; e.OldItems.Count != 0)
+        foreach (WorkspaceViewModel workspace in e.OldItems)
+            workspace.RequestClose -= this.OnWorkspaceRequestClose;
+}
+void OnWorkspaceRequestClose(object sender, EventArgs e)
+{
+    this.Workspaces.Remove(sender as WorkspaceViewModel);
+}
+"><span><span class="hljs-comment">// In MainWindowViewModel.cs </span>
+ObservableCollection&lt;WorkspaceViewModel&gt; _workspaces;
+<span class="hljs-keyword">public</span> ObservableCollection&lt;WorkspaceViewModel&gt; Workspaces
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">if</span> (_workspaces == <span class="hljs-literal">null</span>)
+        {
+            _workspaces = <span class="hljs-keyword">new</span> ObservableCollection&lt;WorkspaceViewModel&gt;();
+            _workspaces.CollectionChanged += <span class="hljs-keyword">this</span>.OnWorkspacesChanged;
+        }
+        <span class="hljs-keyword">return</span> _workspaces;
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnWorkspacesChanged</span>(<span class="hljs-params"><span class="hljs-keyword">object</span> sender, NotifyCollectionChangedEventArgs e</span>)</span>
+{
+    <span class="hljs-keyword">if</span> (e.NewItems != <span class="hljs-literal">null</span> &amp;&amp; e.NewItems.Count != <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">foreach</span> (WorkspaceViewModel workspace <span class="hljs-keyword">in</span> e.NewItems)
+            workspace.RequestClose += <span class="hljs-keyword">this</span>.OnWorkspaceRequestClose;
+    <span class="hljs-keyword">if</span> (e.OldItems != <span class="hljs-literal">null</span> &amp;&amp; e.OldItems.Count != <span class="hljs-number">0</span>)
+        <span class="hljs-keyword">foreach</span> (WorkspaceViewModel workspace <span class="hljs-keyword">in</span> e.OldItems)
+            workspace.RequestClose -= <span class="hljs-keyword">this</span>.OnWorkspaceRequestClose;
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnWorkspaceRequestClose</span>(<span class="hljs-params"><span class="hljs-keyword">object</span> sender, EventArgs e</span>)</span>
+{
+    <span class="hljs-keyword">this</span>.Workspaces.Remove(sender <span class="hljs-keyword">as</span> WorkspaceViewModel);
+}
+</span></code></pre>
+<p>In the UnitTests project, the MainWindowViewModelTests.cs file contains a test method that verifies that this functionality is working properly. The ease with which you can create unit tests for ViewModel classes is a huge selling point of the MVVM pattern,because it allows for simple testing of application functionality without writing code that touches the UI. That test method is shown in <strong>Figure 9</strong>.</p>
+<p>Figure 9 The Test Method</p>
+<div class="codeHeader" id="code-try-9" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In MainWindowViewModelTests.cs 
+[TestMethod]
+public void TestCloseAllCustomersWorkspace()
+{
+    // Create the MainWindowViewModel, but not the MainWindow. 
+    MainWindowViewModel target = new MainWindowViewModel(Constants.CUSTOMER_DATA_FILE);
+    Assert.AreEqual(0, target.Workspaces.Count, &quot;Workspaces isn&#39;t empty.&quot;);
+    // Find the command that opens the &quot;All Customers&quot; workspace. 
+    CommandViewModel commandVM = target.Commands.First(cvm =&gt; cvm.DisplayName == &quot;View all customers&quot;);
+    // Open the &quot;All Customers&quot; workspace. 
+    commandVM.Command.Execute(null); Assert.AreEqual(1, target.Workspaces.Count, &quot;Did not create viewmodel.&quot;);
+    // Ensure the correct type of workspace was created. 
+    var allCustomersVM = target.Workspaces[0] as AllCustomersViewModel;
+    Assert.IsNotNull(allCustomersVM, &quot;Wrong viewmodel type created.&quot;);
+    // Tell the &quot;All Customers&quot; workspace to close. 
+    allCustomersVM.CloseCommand.Execute(null);
+    Assert.AreEqual(0, target.Workspaces.Count, &quot;Did not close viewmodel.&quot;);
+}
+"><span><span class="hljs-comment">// In MainWindowViewModelTests.cs </span>
+[<span class="hljs-meta">TestMethod</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TestCloseAllCustomersWorkspace</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-comment">// Create the MainWindowViewModel, but not the MainWindow. </span>
+    MainWindowViewModel target = <span class="hljs-keyword">new</span> MainWindowViewModel(Constants.CUSTOMER_DATA_FILE);
+    Assert.AreEqual(<span class="hljs-number">0</span>, target.Workspaces.Count, <span class="hljs-string">"Workspaces isn't empty."</span>);
+    <span class="hljs-comment">// Find the command that opens the "All Customers" workspace. </span>
+    CommandViewModel commandVM = target.Commands.First(cvm =&gt; cvm.DisplayName == <span class="hljs-string">"View all customers"</span>);
+    <span class="hljs-comment">// Open the "All Customers" workspace. </span>
+    commandVM.Command.Execute(<span class="hljs-literal">null</span>); Assert.AreEqual(<span class="hljs-number">1</span>, target.Workspaces.Count, <span class="hljs-string">"Did not create viewmodel."</span>);
+    <span class="hljs-comment">// Ensure the correct type of workspace was created. </span>
+    <span class="hljs-keyword">var</span> allCustomersVM = target.Workspaces[<span class="hljs-number">0</span>] <span class="hljs-keyword">as</span> AllCustomersViewModel;
+    Assert.IsNotNull(allCustomersVM, <span class="hljs-string">"Wrong viewmodel type created."</span>);
+    <span class="hljs-comment">// Tell the "All Customers" workspace to close. </span>
+    allCustomersVM.CloseCommand.Execute(<span class="hljs-literal">null</span>);
+    Assert.AreEqual(<span class="hljs-number">0</span>, target.Workspaces.Count, <span class="hljs-string">"Did not close viewmodel."</span>);
+}
+</span></code></pre>
+<h2 id="applying-a-view-to-a-viewmodel">Applying a View to a ViewModel<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#applying-a-view-to-a-viewmodel" aria-labelledby="applying-a-view-to-a-viewmodel"></a></h2>
+<p>MainWindowViewModel indirectly adds and removes WorkspaceViewModel objects to and from the main window's TabControl. By relying on data binding, the Content property of aTabItem receives a ViewModelBase-derived object to display.ViewModelBase is not a UI element, so it has no inherent support for rendering itself. By default, in WPF a non-visual object isrendered by displaying the results of a call to its ToString method in a TextBlock. That clearly is not what you need, unless your users have a burning desire to see the type name of our ViewModel classes!</p>
+<p>You can easily tell WPF how to render a ViewModel object by using typed DataTemplates. A typed DataTemplate does not have anx:Key value assigned to it, but it does have its DataType property set to an instance of the Type class. If WPF tries to render one of your ViewModel objects, it will check to see if the resource system has a typed DataTemplate in scope whose DataType is the same as (or a base class of) the type of your ViewModel object. If it finds one, it uses that template to render the ViewModel object referenced by the tab item's Content property.</p>
+<p>The MainWindowResources.xaml file has a ResourceDictionary.That dictionary is added to the main window's resource hierarchy,which means that the resources it contains are in the window'sresource scope. When a tab item's content is set to a ViewModelobject, a typed DataTemplate from this dictionary supplies a view (that is, a user control) to render it, as shown in <strong>Figure 10</strong>.</p>
+<p>Figure 10 Supplying a View</p>
+<div class="codeHeader" id="code-try-10" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;!-- This resource dictionary is used by the MainWindow. --&gt;
+&lt;ResourceDictionary xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot; 
+                    xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot; 
+                    xmlns:vm=&quot;clr-namespace:DemoApp.ViewModel&quot; 
+                    xmlns:vw=&quot;clr-namespace:DemoApp.View&quot; &gt;
+    &lt;!-- This template applies an AllCustomersView to an instance 
+    of the AllCustomersViewModel class shown in the main window. --&gt;
+    &lt;DataTemplate DataType=&quot;{x:Type vm:AllCustomersViewModel}&quot;&gt;
+        &lt;vw:AllCustomersView /&gt;
+    &lt;/DataTemplate&gt;
+    &lt;!-- This template applies a CustomerView to an instance of 
+    the CustomerViewModel class shown in the main window. --&gt;
+    &lt;DataTemplate DataType=&quot;{x:Type vm:CustomerViewModel}&quot;&gt;
+        &lt;vw:CustomerView /&gt;
+    &lt;/DataTemplate&gt;
+    &lt;!-- Other resources omitted for clarity... --&gt;
+&lt;/ResourceDictionary&gt;
+"><span><span class="hljs-comment">&lt;!-- This resource dictionary is used by the MainWindow. --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">ResourceDictionary</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://schemas.microsoft.com/winfx/2006/xaml/presentation"</span> 
+                    <span class="hljs-attr">xmlns:x</span>=<span class="hljs-string">"http://schemas.microsoft.com/winfx/2006/xaml"</span> 
+                    <span class="hljs-attr">xmlns:vm</span>=<span class="hljs-string">"clr-namespace:DemoApp.ViewModel"</span> 
+                    <span class="hljs-attr">xmlns:vw</span>=<span class="hljs-string">"clr-namespace:DemoApp.View"</span> &gt;</span>
+    <span class="hljs-comment">&lt;!-- This template applies an AllCustomersView to an instance 
+    of the AllCustomersViewModel class shown in the main window. --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span> <span class="hljs-attr">DataType</span>=<span class="hljs-string">"{x:Type vm:AllCustomersViewModel}"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">vw:AllCustomersView</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- This template applies a CustomerView to an instance of 
+    the CustomerViewModel class shown in the main window. --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">DataTemplate</span> <span class="hljs-attr">DataType</span>=<span class="hljs-string">"{x:Type vm:CustomerViewModel}"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">vw:CustomerView</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">DataTemplate</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Other resources omitted for clarity... --&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">ResourceDictionary</span>&gt;</span>
+</span></code></pre>
+<p>You do not need to write any code that determines which view to show for a ViewModel object. The WPF resource system does all of the heavy lifting for you, freeing you up to focus on more important things. In more complex scenarios, it is possible to programmatically select the view, but in most situations that is unnecessary.</p>
+<h2 id="the-data-model-and-repository">The Data Model and Repository<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-data-model-and-repository" aria-labelledby="the-data-model-and-repository"></a></h2>
+<p>You have seen how ViewModel objects are loaded, displayed, and closed by the application shell. Now that the general plumbing is in place, you can review implementation details more specific to the domain of the application. Before getting deep into the application's two workspaces, "All Customers" and "New Customer,"let's first examine the data model and data access classes. The design of those classes has almost nothing to do with the MVVM pattern, because you can create a ViewModel class to adapt just about any data object into something friendly to WPF.</p>
+<p>The sole model class in the demo program is Customer. That class has a handful of properties that represent information about a customer of a company, such as their first name, last name, and e-mail address. It provides validation messages by implementing the standard IDataErrorInfo interface, which existed for years before WPF hit the street. The Customer class has nothing in it that suggests it is being used in an MVVM architecture or even in a WPF application. The class could easily have come from a legacy business library.</p>
+<p>Data must come from and reside somewhere. In this application,an instance of the CustomerRepository class loads and stores allCustomer objects. It happens to load the customer data from an XMLfile, but the type of external data source is irrelevant. The data could come from a database, a Web service, a named pipe, a file on disk, or even carrier pigeons: it simply does not matter. As long as you have a .NET object with some data in it, regardless of where it came from, the MVVM pattern can get that data on the screen.</p>
+<p>The CustomerRepository class exposes a few methods that allow you to get all the available Customer objects, add new a Customer to the repository, and check if a Customer is already in the repository. Since the application does not allow the user to delete a customer, the repository does not allow you to remove a customer.The CustomerAdded event fires when a new Customer enters the CustomerRepository, via the AddCustomer method.</p>
+<p>Clearly, this application's data model is very small, compared to what real business applications require, but that is not important. What is important to understand is how the ViewModelclasses make use of Customer and CustomerRepository. Note thatCustomerViewModel is a wrapper around a Customer object. It exposes the state of a Customer, and other state used by theCustomerView control, through a set of properties. CustomerViewModel does not duplicate the state of a Customer; it simply exposes it via delegation, like this:</p>
+<div class="codeHeader" id="code-try-11" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="public string FirstName
+{
+    get { return _customer.FirstName; }
+    set
+    {
+        if (value == _customer.FirstName) return;
+        _customer.FirstName = value;
+        base.OnPropertyChanged(&quot;FirstName&quot;);
+    }
+}
+"><span><span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> FirstName
+{
+    <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _customer.FirstName; }
+    <span class="hljs-keyword">set</span>
+    {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">value</span> == _customer.FirstName) <span class="hljs-keyword">return</span>;
+        _customer.FirstName = <span class="hljs-keyword">value</span>;
+        <span class="hljs-keyword">base</span>.OnPropertyChanged(<span class="hljs-string">"FirstName"</span>);
+    }
+}
+</span></code></pre>
+<p>When the user creates a new customer and clicks the Save button in the CustomerView control, the CustomerViewModel associated with that view will add the new Customer object to theCustomerRepository. That causes the repository's CustomerAdded event to fire, which lets the AllCustomersViewModel know that it should add a new CustomerViewModel to its AllCustomers collection. In a sense, CustomerRepository acts as asynchronization mechanism between various ViewModels that deal withCustomer objects. Perhaps one might think of this as using the Mediator design pattern. I will review more of how this works in the upcoming sections, but for now refer to the diagram in <strong>Figure 11</strong> for a high-level understanding of how all the pieces fit together.</p>
+<p><img src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/dd419663.fig11_l.gif(en-us,msdn.10).gif" alt="Figure 11 Customer Relationships screenshot" data-linktype="relative-path"></p>
+<p><strong>Figure 11 Customer Relationships</strong></p>
+<h2 id="new-customer-data-entry-form">New Customer Data Entry Form<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#new-customer-data-entry-form" aria-labelledby="new-customer-data-entry-form"></a></h2>
+<p>When the user clicks the "Create new customer" link, MainWindowViewModel adds a new CustomerViewModel to its list ofworkspaces, and a CustomerView control displays it. After the user types valid values into the input fields, the Save button enters the enabled state so that the user can persist the new customer information. There is nothing out of the ordinary here, just a regular data entry form with input validation and a Save button.</p>
+<p>The Customer class has built-in validation support, available through its IDataErrorInfo interface implementation. That validation ensures the customer has a first name, a well-formed e-mail address, and, if the customer is a person, a last name. If the Customer's IsCompany property returns true, the LastName property cannot have a value (the idea being that a company does not have a last name). This validation logic might make sense from the Customer object's perspective, but it does not meet the needs of the user interface. The UI requires a user to select whether a new customer is a person or a company. The Customer Type selector initially has the value "(Not Specified)". How can the UI tell the user that the customer type is unspecified if the IsCompanyproperty of a Customer only allows for a true or false value?</p>
+<p>Assuming you have complete control over the entire software system, you could change the IsCompany property to be of typeNullable, which would allow for the "unselected" value. However,the real world is not always so simple. Suppose you cannot changethe Customer class because it comes from a legacy library owned bya different team in your company. What if there is no easy way to persist that "unselected" value because of the existing database schema? What if other applications already use the Customer classand rely on the property being a normal Boolean value? Once again,having a ViewModel comes to the rescue.</p>
+<p>The test method in <strong>Figure 12</strong> shows how this functionality works in CustomerViewModel. CustomerViewModel exposes a CustomerTypeOptions property so that the Customer Type selector has three strings to display. It also exposes a CustomerTypeproperty, which stores the selected String in the selector. When CustomerType is set, it maps the String value to a Boolean value for the underlying Customer object's IsCompanyproperty. <strong>Figure 13</strong> shows the two properties.</p>
+<p>Figure 12 The Test Method</p>
+<div class="codeHeader" id="code-try-12" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In CustomerViewModelTests.cs 
+[TestMethod]
+public void TestCustomerType()
+{
+    Customer cust = Customer.CreateNewCustomer();
+    CustomerRepository repos = new CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+    CustomerViewModel target = new CustomerViewModel(cust, repos);
+    target.CustomerType = &quot;Company&quot;;
+    Assert.IsTrue(cust.IsCompany, &quot;Should be a company&quot;);
+    target.CustomerType = &quot;Person&quot;;
+    Assert.IsFalse(cust.IsCompany, &quot;Should be a person&quot;);
+    target.CustomerType = &quot;(Not Specified)&quot;;
+    string error = (target as IDataErrorInfo)[&quot;CustomerType&quot;];
+    Assert.IsFalse(String.IsNullOrEmpty(error), &quot;Error message should be returned&quot;);
+}
+"><span><span class="hljs-comment">// In CustomerViewModelTests.cs </span>
+[<span class="hljs-meta">TestMethod</span>]
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TestCustomerType</span>(<span class="hljs-params"></span>)</span>
+{
+    Customer cust = Customer.CreateNewCustomer();
+    CustomerRepository repos = <span class="hljs-keyword">new</span> CustomerRepository(Constants.CUSTOMER_DATA_FILE);
+    CustomerViewModel target = <span class="hljs-keyword">new</span> CustomerViewModel(cust, repos);
+    target.CustomerType = <span class="hljs-string">"Company"</span>;
+    Assert.IsTrue(cust.IsCompany, <span class="hljs-string">"Should be a company"</span>);
+    target.CustomerType = <span class="hljs-string">"Person"</span>;
+    Assert.IsFalse(cust.IsCompany, <span class="hljs-string">"Should be a person"</span>);
+    target.CustomerType = <span class="hljs-string">"(Not Specified)"</span>;
+    <span class="hljs-keyword">string</span> error = (target <span class="hljs-keyword">as</span> IDataErrorInfo)[<span class="hljs-string">"CustomerType"</span>];
+    Assert.IsFalse(String.IsNullOrEmpty(error), <span class="hljs-string">"Error message should be returned"</span>);
+}
+</span></code></pre>
+<p>Figure 13 CustomerType Properties</p>
+<div class="codeHeader" id="code-try-13" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In CustomerViewModel.cs 
+public string[] CustomerTypeOptions
+{
+    get
+    {
+        if (_customerTypeOptions == null)
+        {
+            _customerTypeOptions =
+                new string[] { &quot;(Not Specified)&quot;, &quot;Person&quot;, &quot;Company&quot; };
+        }
+        return _customerTypeOptions;
+    }
+}
+public string CustomerType
+{
+    get { return _customerType; }
+    set
+    {
+        if (value == _customerType || String.IsNullOrEmpty(value)) return;
+        _customerType = value;
+        if (_customerType == &quot;Company&quot;) { _customer.IsCompany = true; }
+        else if (_customerType == &quot;Person&quot;) { _customer.IsCompany = false; }
+        base.OnPropertyChanged(&quot;CustomerType&quot;);
+        base.OnPropertyChanged(&quot;LastName&quot;);
+    }
+}
+"><span><span class="hljs-comment">// In CustomerViewModel.cs </span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span>[] CustomerTypeOptions
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">if</span> (_customerTypeOptions == <span class="hljs-literal">null</span>)
+        {
+            _customerTypeOptions =
+                <span class="hljs-keyword">new</span> <span class="hljs-keyword">string</span>[] { <span class="hljs-string">"(Not Specified)"</span>, <span class="hljs-string">"Person"</span>, <span class="hljs-string">"Company"</span> };
+        }
+        <span class="hljs-keyword">return</span> _customerTypeOptions;
+    }
+}
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">string</span> CustomerType
+{
+    <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> _customerType; }
+    <span class="hljs-keyword">set</span>
+    {
+        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">value</span> == _customerType || String.IsNullOrEmpty(<span class="hljs-keyword">value</span>)) <span class="hljs-keyword">return</span>;
+        _customerType = <span class="hljs-keyword">value</span>;
+        <span class="hljs-keyword">if</span> (_customerType == <span class="hljs-string">"Company"</span>) { _customer.IsCompany = <span class="hljs-literal">true</span>; }
+        <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (_customerType == <span class="hljs-string">"Person"</span>) { _customer.IsCompany = <span class="hljs-literal">false</span>; }
+        <span class="hljs-keyword">base</span>.OnPropertyChanged(<span class="hljs-string">"CustomerType"</span>);
+        <span class="hljs-keyword">base</span>.OnPropertyChanged(<span class="hljs-string">"LastName"</span>);
+    }
+}
+</span></code></pre>
+<p>The CustomerView control contains a ComboBox that is bound to those properties, as seen here:</p>
+<div class="codeHeader" id="code-try-14" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;ComboBox ItemsSource=&quot;{Binding CustomerTypeOptions}&quot; 
+              SelectedItem=&quot;{Binding CustomerType, ValidatesOnDataErrors=True}&quot; /&gt;
+"><span><span class="hljs-tag">&lt;<span class="hljs-name">ComboBox</span> <span class="hljs-attr">ItemsSource</span>=<span class="hljs-string">"{Binding CustomerTypeOptions}"</span> 
+              <span class="hljs-attr">SelectedItem</span>=<span class="hljs-string">"{Binding CustomerType, ValidatesOnDataErrors=True}"</span> /&gt;</span>
+</span></code></pre>
+<p>When the selected item in that ComboBox changes, the datasource's IDataErrorInfo interface is queried to see if the new value is valid. That occurs because the SelectedItem property binding has ValidatesOnDataErrors set to true. Since the data source is a CustomerViewModel object, the binding system asks that CustomerViewModel for a validation error on the CustomerTypeproperty. Most of the time, CustomerViewModel delegates all requests for validation errors to the Customer object it contains.However, since Customer has no notion of having an unselected state for the IsCompany property, the CustomerViewModel class must handle validating the new selected item in the ComboBox control. That code is seen in <strong>Figure 14</strong>.</p>
+<p>Figure 14 Validating a CustomerViewModel Object</p>
+<div class="codeHeader" id="code-try-15" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In CustomerViewModel.cs 
+string IDataErrorInfo.this[string propertyName]
+{
+    get
+    {
+        string error = null; if (propertyName == &quot;CustomerType&quot;)
+        {
+            // The IsCompany property of the Customer class 
+            // is Boolean, so it has no concept of being in 
+            // an &quot;unselected&quot; state. The CustomerViewModel 
+            // class handles this mapping and validation. 
+            error = this.ValidateCustomerType();
+        }
+        else { error = (_customer as IDataErrorInfo)[propertyName]; }
+        // Dirty the commands registered with CommandManager, 
+        // such as our Save command, so that they are queried 
+        // to see if they can execute now. 
+        CommandManager.InvalidateRequerySuggested();
+        return error;
+    }
+}
+string ValidateCustomerType()
+{
+    if (this.CustomerType == &quot;Company&quot; || this.CustomerType == &quot;Person&quot;)
+        return null;
+    return &quot;Customer type must be selected&quot;;
+}
+"><span><span class="hljs-comment">// In CustomerViewModel.cs </span>
+<span class="hljs-keyword">string</span> IDataErrorInfo.<span class="hljs-keyword">this</span>[<span class="hljs-keyword">string</span> propertyName]
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">string</span> error = <span class="hljs-literal">null</span>; <span class="hljs-keyword">if</span> (propertyName == <span class="hljs-string">"CustomerType"</span>)
+        {
+            <span class="hljs-comment">// The IsCompany property of the Customer class </span>
+            <span class="hljs-comment">// is Boolean, so it has no concept of being in </span>
+            <span class="hljs-comment">// an "unselected" state. The CustomerViewModel </span>
+            <span class="hljs-comment">// class handles this mapping and validation. </span>
+            error = <span class="hljs-keyword">this</span>.ValidateCustomerType();
+        }
+        <span class="hljs-keyword">else</span> { error = (_customer <span class="hljs-keyword">as</span> IDataErrorInfo)[propertyName]; }
+        <span class="hljs-comment">// Dirty the commands registered with CommandManager, </span>
+        <span class="hljs-comment">// such as our Save command, so that they are queried </span>
+        <span class="hljs-comment">// to see if they can execute now. </span>
+        CommandManager.InvalidateRequerySuggested();
+        <span class="hljs-keyword">return</span> error;
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">ValidateCustomerType</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.CustomerType == <span class="hljs-string">"Company"</span> || <span class="hljs-keyword">this</span>.CustomerType == <span class="hljs-string">"Person"</span>)
+        <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-string">"Customer type must be selected"</span>;
+}
+</span></code></pre>
+<p>The key aspect of this code is that CustomerViewModel's implementation of IDataErrorInfo can handle requests for ViewModel-specific property validation and delegate the other requests to the Customer object. This allows you to make use of validation logic in Model classes and have additional validation for properties that only make sense to ViewModel classes.</p>
+<p>The ability to save a CustomerViewModel is available to a view through the SaveCommand property. That command uses the RelayCommand class examined earlier to allow CustomerViewModel to decide if it can save itself and what to do when told to save its state. In this application, saving a new customer simply means adding it to a CustomerRepository. Deciding if the new customer isready to be saved requires consent from two parties. The Customer object must be asked if it is valid or not, and theCustomerViewModel must decide if it is valid. This two-part decision is necessary because of the ViewModel-specific properties and validation examined previously. The save logic forCustomerViewModel is shown in <strong>Figure 15</strong>.</p>
+<p>Figure 15 The Save Logic for CustomerViewModel</p>
+<div class="codeHeader" id="code-try-16" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In CustomerViewModel.cs 
+public ICommand SaveCommand
+{
+    get
+    {
+        if (_saveCommand == null)
+        {
+            _saveCommand = new RelayCommand(param =&gt; this.Save(),
+                param =&gt; this.CanSave);
+        }
+        return _saveCommand;
+    }
+}
+public void Save()
+{
+    if (!_customer.IsValid)
+        throw new InvalidOperationException(&quot;...&quot;);
+    if (this.IsNewCustomer)
+        _customerRepository.AddCustomer(_customer);
+    base.OnPropertyChanged(&quot;DisplayName&quot;);
+}
+bool IsNewCustomer
+{
+    get
+    {
+        return !_customerRepository.ContainsCustomer(_customer);
+    }
+}
+bool CanSave
+{
+    get
+    {
+        return String.IsNullOrEmpty(this.ValidateCustomerType()) &amp;&amp; 
+            _customer.IsValid;
+    }
+}
+"><span><span class="hljs-comment">// In CustomerViewModel.cs </span>
+<span class="hljs-keyword">public</span> ICommand SaveCommand
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">if</span> (_saveCommand == <span class="hljs-literal">null</span>)
+        {
+            _saveCommand = <span class="hljs-keyword">new</span> RelayCommand(param =&gt; <span class="hljs-keyword">this</span>.Save(),
+                param =&gt; <span class="hljs-keyword">this</span>.CanSave);
+        }
+        <span class="hljs-keyword">return</span> _saveCommand;
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Save</span>(<span class="hljs-params"></span>)</span>
+{
+    <span class="hljs-keyword">if</span> (!_customer.IsValid)
+        <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> InvalidOperationException(<span class="hljs-string">"..."</span>);
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.IsNewCustomer)
+        _customerRepository.AddCustomer(_customer);
+    <span class="hljs-keyword">base</span>.OnPropertyChanged(<span class="hljs-string">"DisplayName"</span>);
+}
+<span class="hljs-keyword">bool</span> IsNewCustomer
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">return</span> !_customerRepository.ContainsCustomer(_customer);
+    }
+}
+<span class="hljs-keyword">bool</span> CanSave
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">return</span> String.IsNullOrEmpty(<span class="hljs-keyword">this</span>.ValidateCustomerType()) &amp;&amp; 
+            _customer.IsValid;
+    }
+}
+</span></code></pre>
+<p>The use of a ViewModel here makes it much easier to create aview that can display a Customer object and allow for things likean "unselected" state of a Boolean property. It also provides the ability to easily tell the customer to save its state. If the view were bound directly to a Customer object, the view would require a lot of code to make this work properly. In a well-designed MVVM architecture, the code behind for most Views should be empty, or, at most, only contain code that manipulates the controls and resources contained within that view. Sometimes it is also necessary to write code in a View's codebehind that interacts with a ViewModel object,such as hooking an event or calling a method that would otherwise be very difficult to invoke from the ViewModel itself.</p>
+<h2 id="all-customers-view">All Customers View<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#all-customers-view" aria-labelledby="all-customers-view"></a></h2>
+<p>The demo application also contains a workspace that displays all of the customers in a ListView. The customers in the list are grouped according to whether they are a company or a person. The user can select one or more customers at a time and view the sum of their total sales in the bottom right corner.</p>
+<p>The UI is the AllCustomersView control, which renders anAllCustomersViewModel object. Each ListViewItem represents a CustomerViewModel object in the AllCustomers collection exposed by the AllCustomerViewModel object. In the previous section, you saw how a CustomerViewModel can render as a data entry form, and now the exact same CustomerViewModel object is rendered as an item in a ListView. The CustomerViewModel class has no idea what visual elements display it, which is why this reuse is possible.</p>
+<p>AllCustomersView creates the groups seen in the ListView. It accomplishes this by binding the ListView's ItemsSource to a CollectionViewSource configured like <strong>Figure16</strong>.</p>
+<p>Figure 16 CollectionViewSource</p>
+<div class="codeHeader" id="code-try-17" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;!-- In AllCustomersView.xaml --&gt;
+&lt;CollectionViewSource x:Key=&quot;CustomerGroups&quot; Source=&quot;{Binding Path=AllCustomers}&quot; &gt;
+    &lt;CollectionViewSource.GroupDescriptions&gt;
+        &lt;PropertyGroupDescription PropertyName=&quot;IsCompany&quot; /&gt;
+    &lt;/CollectionViewSource.GroupDescriptions&gt;
+    &lt;CollectionViewSource.SortDescriptions&gt;
+        &lt;!-- Sort descending by IsCompany so that the &#39; True&#39; values appear first, 
+        which means that companies will always be listed before people. --&gt;
+        &lt;scm:SortDescription PropertyName=&quot;IsCompany&quot; Direction=&quot;Descending&quot; /&gt;
+        &lt;scm:SortDescription PropertyName=&quot;DisplayName&quot; Direction=&quot;Ascending&quot; /&gt;
+    &lt;/CollectionViewSource.SortDescriptions&gt;
+&lt;/CollectionViewSource&gt;
+"><span><span class="hljs-comment">&lt;!-- In AllCustomersView.xaml --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">CollectionViewSource</span> <span class="hljs-attr">x:Key</span>=<span class="hljs-string">"CustomerGroups"</span> <span class="hljs-attr">Source</span>=<span class="hljs-string">"{Binding Path=AllCustomers}"</span> &gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CollectionViewSource.GroupDescriptions</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">PropertyGroupDescription</span> <span class="hljs-attr">PropertyName</span>=<span class="hljs-string">"IsCompany"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CollectionViewSource.GroupDescriptions</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">CollectionViewSource.SortDescriptions</span>&gt;</span>
+        <span class="hljs-comment">&lt;!-- Sort descending by IsCompany so that the ' True' values appear first, 
+        which means that companies will always be listed before people. --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">scm:SortDescription</span> <span class="hljs-attr">PropertyName</span>=<span class="hljs-string">"IsCompany"</span> <span class="hljs-attr">Direction</span>=<span class="hljs-string">"Descending"</span> /&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">scm:SortDescription</span> <span class="hljs-attr">PropertyName</span>=<span class="hljs-string">"DisplayName"</span> <span class="hljs-attr">Direction</span>=<span class="hljs-string">"Ascending"</span> /&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">CollectionViewSource.SortDescriptions</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">CollectionViewSource</span>&gt;</span>
+</span></code></pre>
+<p>The association between a ListViewItem and a CustomerViewModel object is established by the ListView's ItemContainerStyle property. The Style assigned to that property is applied to each ListViewItem, which enables properties on a ListViewItem to be bound to properties on the CustomerViewModel. One important binding n that Style creates a link between the IsSelected property of a ListViewItem and the IsSelected property of a CustomerViewModel, as seen here:</p>
+<div class="codeHeader" id="code-try-18" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;Style x:Key=&quot;CustomerItemStyle&quot; TargetType=&quot;{x:Type ListViewItem}&quot;&gt;
+    &lt;!-- Stretch the content of each cell so that we can
+    right-align text in the Total Sales column. --&gt;
+    &lt;Setter Property=&quot;HorizontalContentAlignment&quot; Value=&quot;Stretch&quot; /&gt;
+    &lt;!-- Bind the IsSelected property of a ListViewItem 
+    to the IsSelected property of a CustomerViewModel object. --&gt;
+    &lt;Setter Property=&quot;IsSelected&quot; Value=&quot;{Binding Path=IsSelected, Mode=TwoWay}&quot; /&gt;
+&lt;/Style&gt;
+"><span><span class="hljs-tag">&lt;<span class="hljs-name">Style</span> <span class="hljs-attr">x:Key</span>=<span class="hljs-string">"CustomerItemStyle"</span> <span class="hljs-attr">TargetType</span>=<span class="hljs-string">"{x:Type ListViewItem}"</span>&gt;</span><span class="xml">
+    <span class="hljs-comment">&lt;!-- Stretch the content of each cell so that we can
+    right-align text in the Total Sales column. --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Setter</span> <span class="hljs-attr">Property</span>=<span class="hljs-string">"HorizontalContentAlignment"</span> <span class="hljs-attr">Value</span>=<span class="hljs-string">"Stretch"</span> /&gt;</span>
+    <span class="hljs-comment">&lt;!-- Bind the IsSelected property of a ListViewItem 
+    to the IsSelected property of a CustomerViewModel object. --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">Setter</span> <span class="hljs-attr">Property</span>=<span class="hljs-string">"IsSelected"</span> <span class="hljs-attr">Value</span>=<span class="hljs-string">"{Binding Path=IsSelected, Mode=TwoWay}"</span> /&gt;</span>
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">Style</span>&gt;</span>
+</span></code></pre>
+<p>When a CustomerViewModel is selected or unselected, that causes the sum of all selected customers' total sales to change. The AllCustomersViewModel class is responsible for maintaining that value, so that the ContentPresenter beneath the ListView can display the correct number. <strong>Figure 17</strong> shows how AllCustomersViewModel monitors each customer for being selected or unselected and notifies the view that it needs to update the display value.</p>
+<p>Figure 17 Monitoring for Selected or Unselected</p>
+<div class="codeHeader" id="code-try-19" data-bi-name="code-header"><span class="language">C#</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-csharp" data-author-content="// In AllCustomersViewModel.cs 
+public double TotalSelectedSales
+{
+    get
+    {
+        return this.AllCustomers.Sum(custVM =&gt; custVM.IsSelected ? custVM.TotalSales : 0.0);
+    }
+}
+void OnCustomerViewModelPropertyChanged(object sender, PropertyChangedEventArgs e)
+{
+    string IsSelected = &quot;IsSelected&quot;;
+    // Make sure that the property name we&#39;re 
+    // referencing is valid. This is a debugging 
+    // technique, and does not execute in a Release build. 
+    (sender as CustomerViewModel).VerifyPropertyName(IsSelected);
+    // When a customer is selected or unselected, we must let the 
+    // world know that the TotalSelectedSales property has changed, 
+    // so that it will be queried again for a new value. 
+    if (e.PropertyName == IsSelected)
+        this.OnPropertyChanged(&quot;TotalSelectedSales&quot;);
+}
+"><span><span class="hljs-comment">// In AllCustomersViewModel.cs </span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">double</span> TotalSelectedSales
+{
+    <span class="hljs-keyword">get</span>
+    {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.AllCustomers.Sum(custVM =&gt; custVM.IsSelected ? custVM.TotalSales : <span class="hljs-number">0.0</span>);
+    }
+}
+<span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">OnCustomerViewModelPropertyChanged</span>(<span class="hljs-params"><span class="hljs-keyword">object</span> sender, PropertyChangedEventArgs e</span>)</span>
+{
+    <span class="hljs-keyword">string</span> IsSelected = <span class="hljs-string">"IsSelected"</span>;
+    <span class="hljs-comment">// Make sure that the property name we're </span>
+    <span class="hljs-comment">// referencing is valid. This is a debugging </span>
+    <span class="hljs-comment">// technique, and does not execute in a Release build. </span>
+    (sender <span class="hljs-keyword">as</span> CustomerViewModel).VerifyPropertyName(IsSelected);
+    <span class="hljs-comment">// When a customer is selected or unselected, we must let the </span>
+    <span class="hljs-comment">// world know that the TotalSelectedSales property has changed, </span>
+    <span class="hljs-comment">// so that it will be queried again for a new value. </span>
+    <span class="hljs-keyword">if</span> (e.PropertyName == IsSelected)
+        <span class="hljs-keyword">this</span>.OnPropertyChanged(<span class="hljs-string">"TotalSelectedSales"</span>);
+}
+</span></code></pre>
+<p>The UI binds to the TotalSelectedSales property and applie scurrency (monetary) formatting to the value. The ViewModel object could apply the currency formatting, instead of the view, by returning a String instead of a Double value from theTotalSelectedSales property. The ContentStringFormat property of ContentPresenter was added in the .NET Framework 3.5 SP1, so if you must target an older version of WPF, you will need to apply the currency formatting in code:</p>
+<div class="codeHeader" id="code-try-20" data-bi-name="code-header"><span class="language">XML</span><button type="button" class="action is-relative" data-bi-name="copy" aria-label="Copy code">
+				<span class="icon">
+					<span class="docon docon-edit-copy" role="presentation"></span>
+				</span>
+				<span>Copy</span>
+				<div class="successful-copy-alert is-absolute has-right-zero has-top-zero has-left-zero has-bottom-zero is-flex has-flex-align-items-center has-flex-justify-content-center has-text-success-invert has-background-success is-transparent" aria-hidden="true">
+					<span class="icon is-size-4">
+						<span class="docon docon-check-mark" role="presentation"></span>
+					</span>
+				</div>
+			</button></div><pre tabindex="0" class="has-inner-focus"><code class="lang-xml" data-author-content="&lt;!-- In AllCustomersView.xaml --&gt;
+&lt;StackPanel Orientation=&quot;Horizontal&quot;&gt;
+    &lt;TextBlock Text=&quot;Total selected sales: &quot; /&gt;
+    &lt;ContentPresenter 
+        Content=&quot;{Binding Path=TotalSelectedSales}&quot; 
+        ContentStringFormat=&quot;c&quot; /&gt;
+&lt;/StackPanel&gt;
+"><span><span class="hljs-comment">&lt;!-- In AllCustomersView.xaml --&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">StackPanel</span> <span class="hljs-attr">Orientation</span>=<span class="hljs-string">"Horizontal"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">TextBlock</span> <span class="hljs-attr">Text</span>=<span class="hljs-string">"Total selected sales: "</span> /&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">ContentPresenter</span> 
+        <span class="hljs-attr">Content</span>=<span class="hljs-string">"{Binding Path=TotalSelectedSales}"</span> 
+        <span class="hljs-attr">ContentStringFormat</span>=<span class="hljs-string">"c"</span> /&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">StackPanel</span>&gt;</span>
+</span></code></pre>
+<h2 id="wrapping-up">Wrapping Up<a class="docon docon-link heading-anchor" href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#wrapping-up" aria-labelledby="wrapping-up"></a></h2>
+<p>WPF has a lot to offer application developers, and learning toleverage that power requires a mindset shift. TheModel-View-ViewModel pattern is a simple and effective set ofguidelines for designing and implementing a WPF application. Itallows you to create a strong separation between data, behavior,and presentation, making it easier to control the chaos that is software development.</p>
+<p><em>I would like to thank John Gossman for his help with this article.</em></p>
+<hr>
+<p><strong>Josh Smith</strong>&nbsp;<em>is passionate about using WPF to create great user experiences. He was awarded the Microsoft MVP title for his work in the WPF community. Josh works for Infragistics in the Experience Design Group. When he is not at a computer, he enjoys playing the piano, reading about history, and exploring New York City with his girlfriend. You can visit Josh's blog at <a href="http://joshsmithonwpf.wordpress.com/" data-linktype="external">joshsmithonwpf.wordpress.com</a>.</em></p>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- recommended content page section -->
+
+							<nav data-bi-name="recommendation-bottom" hidden="" id="recommended-content-center" class="is-hidden-desktop" aria-labelledby="recommended-content-center-title">
+								<h3 id="recommended-content-center-title" class="is-size-2 has-margin-top-large has-margin-bottom-small">Related Articles</h3>
+							</nav>
+
+						<!-- end recommended content page section -->
+
+						<!-- page rating section -->
+						<!-- end page rating section -->
+
+
+						<!-- feedback section -->
+
+						<!-- end feedback section -->
+
+						<!-- feedback report section -->
+						<!-- end feedback report section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+		<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="https://docs.microsoft.com/en-us/locale?target=https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern" data-bi-name="select-locale"><span class="icon docon docon-world is-size-4 has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text">English (United States)</span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-text is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger" aria-controls="theme-menu" aria-expanded="false" title="Theme" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Theme</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start is-selected" data-theme-to="light" aria-pressed="true">
+					<span class="theme-light has-margin-right-small">
+						<span class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Light					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start" data-theme-to="dark" aria-pressed="false">
+					<span class="theme-dark has-margin-right-small">
+						<span class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Dark					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start" data-theme-to="high-contrast" aria-pressed="false">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+High contrast					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+
+    <ul class="links" data-bi-name="footerlinks">
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/teamblog" data-bi-name="bloglink">Blog</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+			<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+		<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+		<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+		<li>© Microsoft 2020</li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<div class="is-size-7 right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Page Actions">
+						<div id="affixed-right-container" class="doc-outline is-fixed is-vertically-scrollable" style="width: 164px; top: 245.5px; bottom: 24px;">
+								<nav data-bi-name="recommendation-sidebar" hidden="" id="recommended-content-nav" role="navigation" aria-labelledby="recommended-content-nav-title">
+									<h3 id="recommended-content-nav-title">Related Articles</h3>
+								</nav>
+							<nav id="side-doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="Article Outline">
+								<h3>In this article</h3>
+							<ol><li class="selected"><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#order-vs-chaos">Order vs. Chaos</a></li><li class=""><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-evolution-of-model-view-viewmodel">The Evolution of Model-View-ViewModel</a></li><li class=""><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#why-wpf-developers-love-mvvm">Why WPF Developers Love MVVM</a></li><li class=""><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-demo-application">The Demo Application</a></li><li class=""><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#relaying-command-logic">Relaying Command Logic</a></li><li class=""><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#viewmodel-class-hierarchy">ViewModel Class Hierarchy</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#viewmodelbase-class">ViewModelBase Class</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#commandviewmodel-class">CommandViewModel Class</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#mainwindowviewmodel-class">MainWindowViewModel Class</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#applying-a-view-to-a-viewmodel">Applying a View to a ViewModel</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#the-data-model-and-repository">The Data Model and Repository</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#new-customer-data-entry-form">New Customer Data Entry Form</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#all-customers-view">All Customers View</a></li><li><a href="https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern#wrapping-up">Wrapping Up</a></li></ol></nav>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div id="openFeedbackContainer" class="openfeedback-container"></div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+		<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="https://docs.microsoft.com/en-us/locale?target=https://docs.microsoft.com/en-us/archive/msdn-magazine/2009/february/patterns-wpf-apps-with-the-model-view-viewmodel-design-pattern" data-bi-name="select-locale"><span class="icon docon docon-world is-size-4 has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text">English (United States)</span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-text is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger" aria-controls="theme-menu" aria-expanded="false" title="Theme" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Theme</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start is-selected" data-theme-to="light" aria-pressed="true">
+					<span class="theme-light has-margin-right-small">
+						<span class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Light					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start" data-theme-to="dark" aria-pressed="false">
+					<span class="theme-dark has-margin-right-small">
+						<span class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Dark					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start" data-theme-to="high-contrast" aria-pressed="false">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background" aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background"></rect>
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary"></rect>
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary"></rect>
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary"></rect>
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary"></rect>
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary"></rect>
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary"></rect>
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+High contrast					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/previous-versions/" data-bi-name="archivelink">Previous Version Docs</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/teamblog" data-bi-name="bloglink">Blog</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/contribute" data-bi-name="contributorGuide">Contribute</a></li>
+			<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Privacy &amp; Cookies</a></li>
+		<li><a data-mscc-ic="false" href="https://docs.microsoft.com/en-us/legal/termsofuse" data-bi-name="termsofuse">Terms of Use</a></li>
+		<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Site Feedback</a></li>
+		<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Trademarks</a></li>
+		<li>© Microsoft 2020</li>
+    </ul>
+</footer>
+	</div>
+
+	<div id="action-panel" role="region" aria-label="Action Panel" class="action-panel has-default-focus" tabindex="-1" aria-expanded="false"></div>
+
+
+<div class="usabilla_live_button_container" role="button" tabindex="0" style="z-index: 99999990; right: 0px; top: 50%; margin-top: 0px; position: fixed; width: 0px; height: 0px; display: none;" aria-label="Usabilla Feedback Button"><iframe src="./Patterns - WPF Apps With The Model-View-ViewModel Design Pattern _ Microsoft Docs_files/saved_resource(1).html" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" data-tags="right" title="Usabilla Feedback Button" style="width: 0px; height: 0px; margin: 0px; padding: 0px; border: 0px; overflow: hidden; z-index: 9998; position: absolute; left: 0px; top: 0px; box-shadow: 0px 0px 0px; background-color: transparent;"></iframe></div></body></html>
